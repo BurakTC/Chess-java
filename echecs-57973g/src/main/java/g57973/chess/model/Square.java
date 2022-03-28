@@ -6,28 +6,47 @@
 package g57973.chess.model;
 
 /**
+ * This class represents one of the 64 squares on the game board
  *
  * @author g57973
  */
 public class Square {
-    private Piece piece ;
 
+    /**
+     * the piece contained on the game square, 
+     * =null if the square is empty
+     */
+    private Piece piece;
+
+    /**
+     * initialize an empty square
+     */
     public Square() {
         this.piece = null;
     }
-    
 
+    /**
+     * 
+     * @return the contained pawn
+     */
     public Piece getPiece() {
         return piece;
     }
 
+    /**
+     * put a piece in a square
+     * @param piece 
+     */
     public void setPiece(Piece piece) {
         this.piece = piece;
     }
-    
-    public boolean isFree(){
+
+    /**
+     * 
+     * @return true if a square is empty , false otherwise
+     */
+    public boolean isFree() {
         return this.piece == null;
     }
-    
-    
+
 }
