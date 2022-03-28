@@ -6,9 +6,31 @@
 package g57973.chess.model;
 
 /**
- *
+ *Represents a pawn in the game
  * @author g57973
  */
 public class Piece {
+    /**
+     * the only attribute of our pawn is its color
+     */
+    private final Color color;
+
+    /**
+     * constructor of our pawn
+     * @param color 
+     */
+    public Piece(Color color) {
+        this.color = color;
+    }
+
+    /**
+     * 
+     * @return the color of this pawn
+     */
+    public Color getColor() {
+        return color;
+    }
+
+    
     
 }

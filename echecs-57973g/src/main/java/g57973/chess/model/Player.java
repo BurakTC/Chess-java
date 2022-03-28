@@ -6,16 +6,28 @@
 package g57973.chess.model;
 
 /**
- *
+ *Represents a player and his color
  * @author g57973
  */
 public class Player {
-    private Color color;
+    
+    /**
+     * Couleur du joueur
+     */
+    private final Color color;
 
+    /**
+     * Constructor of a player
+     * @param color 
+     */
     public Player(Color color) {
         this.color = color;
     }
     
+    /**
+     * 
+     * @return a player's color
+     */
     public Color getColor(){
         return this.color;
     }

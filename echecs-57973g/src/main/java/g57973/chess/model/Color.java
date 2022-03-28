@@ -6,33 +6,22 @@
 package g57973.chess.model;
 
 /**
- *
+ *These colors will represent those of a player, 
+ * square or pawn in our game.
  * @author g57973
  */
 public enum Color {
-    WHITE,BLACK;
+    WHITE, BLACK;
 
     
-    
-   /**
-    * 
-    * @param color
-    * @return  Opposite Color of gived color. 
-    */
-    public Color opposite(Color color){
-        /**
-         * CE QUE PROF A FAIT :
-         * return color==Color.BLACK ? Color.WHITE : Color.BLACK    
-         */
-        
-        if(color == WHITE){
-            return BLACK;
-        }
-        else {
-            return WHITE;
-        }
+/**
+ * 
+ * @return the opposite color to the current color
+ */
+    public Color opposite() {
+
+        return this == Color.BLACK ? Color.WHITE : Color.BLACK;
+
     }
-    
-    
-    
+
 }
