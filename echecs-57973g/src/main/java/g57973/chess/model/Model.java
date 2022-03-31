@@ -4,7 +4,7 @@ package g57973.chess.model;
  *
  * @author g57973
  */
-public interface Model {
+public interface Model  {
 
   
 

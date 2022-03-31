@@ -60,7 +60,7 @@ public class Board {
      * the given position is not in the game board
      */
     public Piece getPiece(Position pos) {
-        if (!contains(pos)) {
+        if (!contains(pos) ) {
             throw new IllegalArgumentException("La position donnée n'est pas dans le plateau");
         } else {
             return squares[pos.getRow()][pos.getColumn()].getPiece();
@@ -144,9 +144,7 @@ public class Board {
             }
         }
         return posList;
-
     }
-
 }
 /** pub void displayBoard(){
         var n = Board,N

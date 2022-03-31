@@ -14,8 +14,8 @@ package g57973.chess.model;
 public class Position {
 
     //Attributs 
-    private int row;
-    private int column;
+    private final int row;
+    private final int column;
 
     public Position(int row, int cloumn) {
         this.row = row;
