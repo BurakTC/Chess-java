@@ -18,17 +18,16 @@ public class Board {
     /**
      * Initialise the game board , an 8x8 2d array
      */
-    private Square[][] squares;
+    private final Square[][] squares;
 
     public Board() {
 
         this.squares = new Square[8][8];
-        for (int i = 0; i < squares.length; i++) {
+        for (Square[] square : squares) {
             for (int j = 0; j < squares.length; j++) {
-                this.squares[i][j] = new Square();
+                square[j] = new Square();
             }
         }
-
     }
 
     /**
@@ -49,9 +48,10 @@ public class Board {
      * @param pos puts a piece at the given position
      */
     public void setPiece(Piece piece, Position pos) {
-        //pour ajouter une piece dans une case precise 
-        //squares[5][6].setPiece(new Piece(Color.WHITE));
+        squares[pos.getRow()][pos.getColumn()].setPiece(piece);
     }
+    //pour ajouter une piece dans une case precise 
+    //squares[5][6].setPiece(new Piece(Color.WHITE));
 
     /**
      *
@@ -100,12 +100,13 @@ public class Board {
      * true otherwise
      */
     public boolean isFree(Position pos) {
-        if (!contains(pos)) {
-            throw new IllegalArgumentException("La position donnée n'est pas dans le plateau");
-        } else {
+        if (contains(pos)) {
+            return this.squares[pos.getRow()][pos.getColumn()].getPiece() == null;
 
-            return squares[pos.getRow()][pos.getColumn()].isFree();
+        } else {
+            throw new IllegalArgumentException("La position donnée n'est pas dans le plateau");
         }
+
     }
 
     /**
@@ -121,12 +122,15 @@ public class Board {
             throw new IllegalArgumentException("La position donnée n'est pas dans le plateau");
         }
 
-        if (!squares[pos.getRow()][pos.getColumn()].isFree()) {
-            return col != squares[pos.getRow()][pos.getColumn()].getPiece().getColor();
-
-        } else {
-            return false;
+        /**
+         * if (!squares[pos.getRow()][pos.getColumn()].isFree()) { return col !=
+         * squares[pos.getRow()][pos.getColumn()].getPiece().getColor();
+         *
+         * } else { return false;
         }
+         */
+        Square var = squares[pos.getRow()][pos.getColumn()];
+        return !var.isFree() && var.getPiece().getColor() == col.opposite();
     }
 
     /**
@@ -135,15 +139,27 @@ public class Board {
      * @return the list of all the positions occupied by the given player
      */
     public List<Position> getPositionOccupiedBy(Player player) {
-        List posList = new ArrayList();
+        List<Position> posList = new ArrayList<>();
+
         for (int i = 0; i < squares.length; i++) {
             for (int j = 0; j < squares.length; j++) {
-                if (squares[i][j].getPiece().getColor() == player.getColor()) {
-                    posList.add(new Position(i, j));
+                if (squares[i][j].getPiece() != null
+                        && squares[i][j].getPiece().getColor() == player.getColor()) {
+                    posList.add(new Position(i,j));
                 }
             }
         }
         return posList;
+
     }
 
 }
+/** pub void displayBoard(){
+        var n = Board,N
+        * for(int i=n-1; i>=0; i--)
+        * sout("\n")
+        * for(int j=0;j<Board.N;j++)
+        * var square = game.getSquare(new Position[i][j]);
+        * 
+        
+        */

@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package g57973.chess.model;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  *Represents a pawn in the game
@@ -32,5 +34,8 @@ public class Piece {
     }
 
     
+public List<Position> getPossibleMoves(Position position, Board board){
+    return null; //A FAIRE
+}
     
 }

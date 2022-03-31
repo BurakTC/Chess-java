@@ -23,6 +23,7 @@ public class Square {
      */
     public Square() {
         this.piece = null;
+        
     }
 
     /**
@@ -46,7 +47,7 @@ public class Square {
      * @return true if a square is empty , false otherwise
      */
     public boolean isFree() {
-        return this.piece == null;
+        return this.piece == null ;
     }
 
 }
