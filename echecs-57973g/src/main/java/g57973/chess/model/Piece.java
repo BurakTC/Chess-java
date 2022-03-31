@@ -37,5 +37,6 @@ public class Piece {
 public List<Position> getPossibleMoves(Position position, Board board){
     return null; //A FAIRE
 }
+
     
 }

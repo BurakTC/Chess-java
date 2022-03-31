@@ -41,7 +41,8 @@ public class Position {
     /**
      * 
      * @param dir
-     * @return the new position after moving in a given direction
+
+     * @returns the new position after moving in a given direction
      */
     public Position next(Direction dir){
         return new Position(this.row + dir.getDeltaRow() , this.column + dir.getDeltaColumn());
