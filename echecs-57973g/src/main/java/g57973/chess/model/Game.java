@@ -12,7 +12,21 @@ import java.util.List;
  * @author g57973
  */
 public class Game implements Model {
+    
+    private Board board;
+    private Player WHITE;
+    private Player BLACK;
+    private Player currentPlayer;
 
+    public Game(Board board, Player WHITE, Player BLACK) {
+        this.board = board;
+        this.WHITE = WHITE;
+        this.BLACK = BLACK;
+    }
+
+    
+    
+    
     @Override
     public void start() {
     }
