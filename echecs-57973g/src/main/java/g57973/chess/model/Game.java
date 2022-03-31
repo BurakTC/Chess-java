@@ -5,6 +5,7 @@
  */
 package g57973.chess.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -56,23 +57,31 @@ public class Game implements Model {
         if ((!board.contains(oldPos)) || (!board.contains(newPos)) || (!board.isFree(oldPos))
                 || board.getPiece(oldPos).getPossibleMoves(oldPos, board).contains(newPos)) {
             throw new IllegalArgumentException("La position donnée n'est pas dans le plateau");
-        }
-        else{
+        } else {
             Piece cettePiece = board.getPiece(oldPos);
-            board.setPiece(cettePiece,newPos);
+            board.setPiece(cettePiece, newPos);
             board.dropPiece(oldPos);
         }
         if (!isGameOver()) {
             getOppositePlayer();
         }
     }
-    
 
     @Override
     public boolean isGameOver() {
-        return isGameOver();
+        boolean gameOver = false;
+        List<Position> positions = new ArrayList();
+        for (int i = 0; i <= positions.size(); i++) {
+            if (getPiece(positions.get(i)).getPossibleMoves(positions.get(i), board).isEmpty()) {
+                gameOver = true;
+            }
+        }
+
+        return gameOver;
     }
 
+    
+    
     @Override
     public List<Position> getPossibleMoves(Position position) {
         return board.getPiece(position).getPossibleMoves(position, board);
