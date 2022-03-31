@@ -12,10 +12,10 @@ import java.util.List;
  * @author g57973
  */
 public class Game implements Model {
-    
+
     private Board board;
-    private Player WHITE;
-    private Player BLACK;
+    private final Player WHITE;
+    private final Player BLACK;
     private Player currentPlayer;
 
     public Game(Board board, Player WHITE, Player BLACK) {
@@ -24,46 +24,58 @@ public class Game implements Model {
         this.BLACK = BLACK;
     }
 
-    
-    
-    
     @Override
     public void start() {
+        currentPlayer = this.WHITE;
+        board = new Board();
+
     }
 
     @Override
     public Piece getPiece(Position pos) {
-        return null;
+        return this.getPiece(pos);
     }
 
     @Override
     public Player getCurrentPlayer() {
-        return null;
+        return this.currentPlayer;
     }
 
     @Override
     public Player getOppositePlayer() {
-        return null;
+        return currentPlayer == WHITE ? BLACK : WHITE;
     }
 
     @Override
     public boolean isCurrentPlayerPosition(Position pos) {
-        return false;
+        return (!board.isFree(pos)) && (board.getPiece(pos).getColor() == currentPlayer.getColor());
     }
 
     @Override
     public void movePiecePosition(Position oldPos, Position newPos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if ((!board.contains(oldPos)) || (!board.contains(newPos)) || (!board.isFree(oldPos))
+                || board.getPiece(oldPos).getPossibleMoves(oldPos, board).contains(newPos)) {
+            throw new IllegalArgumentException("La position donnée n'est pas dans le plateau");
+        }
+        else{
+            Piece cettePiece = board.getPiece(oldPos);
+            board.setPiece(cettePiece,newPos);
+            board.dropPiece(oldPos);
+        }
+        if (!isGameOver()) {
+            getOppositePlayer();
+        }
     }
+    
 
     @Override
     public boolean isGameOver() {
-        return false;
+        return isGameOver();
     }
 
     @Override
     public List<Position> getPossibleMoves(Position position) {
-        return null;
+        return board.getPiece(position).getPossibleMoves(position, board);
     }
 
 }
