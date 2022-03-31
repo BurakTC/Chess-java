@@ -42,10 +42,40 @@ public class Position {
      * 
      * @param dir
 
-     * @returns the new position after moving in a given direction
+     * @return the new position after moving in a given direction
      */
     public Position next(Direction dir){
+        
         return new Position(this.row + dir.getDeltaRow() , this.column + dir.getDeltaColumn());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + this.row;
+        hash = 67 * hash + this.column;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Position other = (Position) obj;
+        if (this.row != other.row) {
+            return false;
+        }
+        if (this.column != other.column) {
+            return false;
+        }
+        return true;
     }
     
     

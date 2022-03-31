@@ -4,14 +4,17 @@
  * and open the template in the editor.
  */
 package g57973.chess.model;
+
 import java.util.List;
 import java.util.ArrayList;
 
 /**
- *Represents a pawn in the game
+ * Represents a pawn in the game
+ *
  * @author g57973
  */
 public class Piece {
+
     /**
      * the only attribute of our pawn is its color
      */
@@ -19,24 +22,58 @@ public class Piece {
 
     /**
      * constructor of our pawn
-     * @param color 
+     *
+     * @param color
      */
     public Piece(Color color) {
         this.color = color;
     }
 
     /**
-     * 
+     *
      * @return the color of this pawn
      */
     public Color getColor() {
         return color;
     }
 
-    
-public List<Position> getPossibleMoves(Position position, Board board){
-    return null; //A FAIRE
-}
+    public List<Position> getPossibleMoves(Position position, Board board) {
+        List<Position> possibleMoves = new ArrayList<>();
 
-    
+        Position pos1;
+        Position pos2;
+
+        if (!board.isFree(position)) {
+            
+            //PION BLANC
+            if (board.getPiece(position).color == Color.WHITE) {
+                pos1 = position.next(Direction.N);
+                pos2 = pos1.next(Direction.N);
+
+                if (board.isFree(pos1)) {
+                    possibleMoves.add(pos1);
+                }
+                if ((position.getRow() == board.getInitialPawnRow(Color.WHITE)) && (board.isFree(pos2))) {
+                    possibleMoves.add(pos2);
+                }
+            }
+            //PION NOIR
+            if (board.getPiece(position).color == Color.BLACK) {
+                pos1 = position.next(Direction.S);
+                pos2 = pos1.next(Direction.S);
+
+                if (board.isFree(pos1)) {
+                    possibleMoves.add(pos1);
+                }
+                if ((position.getRow() == board.getInitialPawnRow(Color.BLACK)) && (board.isFree(pos2))) {
+                    possibleMoves.add(pos2);
+                }
+
+            }
+
+        }
+
+        return possibleMoves;
+    }
+
 }

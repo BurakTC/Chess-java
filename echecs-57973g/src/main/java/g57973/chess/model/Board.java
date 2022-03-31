@@ -122,13 +122,7 @@ public class Board {
             throw new IllegalArgumentException("La position donnée n'est pas dans le plateau");
         }
 
-        /**
-         * if (!squares[pos.getRow()][pos.getColumn()].isFree()) { return col !=
-         * squares[pos.getRow()][pos.getColumn()].getPiece().getColor();
-         *
-         * } else { return false;
-        }
-         */
+        
         Square var = squares[pos.getRow()][pos.getColumn()];
         return !var.isFree() && var.getPiece().getColor() == col.opposite();
     }
