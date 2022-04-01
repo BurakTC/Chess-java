@@ -14,32 +14,32 @@ import java.util.List;
  */
 public class Game implements Model {
 //JAVADOC DANS LA CLASSE MODEL
-    private Board board;
+
+    private final Board board;
     private final Player WHITE;
     private final Player BLACK;
     private Player currentPlayer;
 
-    public Game(Board board, Player WHITE, Player BLACK) {
+    public Game() {
         this.board = new Board();
-        this.WHITE = WHITE;
-        this.BLACK = BLACK;
+        this.WHITE = new Player(Color.WHITE);
+        this.BLACK = new Player(Color.BLACK);
     }
-
-    
-    
-
-    
-    
 
     @Override
     public void start() {
         currentPlayer = this.WHITE;
-        
+
     }
 
     @Override
     public Piece getPiece(Position pos) {
-        return this.getPiece(pos);
+        if (!board.contains(pos)) {
+            throw new IllegalArgumentException("cette position n'est pas contenur dans le tableau");
+        } else {
+            return this.board.getPiece(pos);
+
+        }
     }
 
     @Override
@@ -79,8 +79,7 @@ public class Game implements Model {
         if (board.getPositionOccupiedBy(getCurrentPlayer()).isEmpty()) {
             gameOver = true;
         }
-        
-        
+
         for (Position pos : board.getPositionOccupiedBy(getCurrentPlayer())) {
             if (getPossibleMoves(pos).isEmpty()) {
                 gameOver = false;
@@ -99,7 +98,6 @@ public class Game implements Model {
      * (getPossibleMoves(pos).isEmpty()) { gameOver = true; } } }
      *
      */
-
     /**
      * boolean gameOver = false; List<Position> positions = new ArrayList(); for
      * (int i = 0; i <= positions.size(); i++) { if
@@ -112,5 +110,5 @@ public class Game implements Model {
     public List<Position> getPossibleMoves(Position position) {
         return board.getPiece(position).getPossibleMoves(position, board);
     }
- 
+
 }

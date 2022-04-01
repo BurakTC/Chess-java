@@ -7,6 +7,7 @@ package g57973.chess.view;
 
 import g57973.chess.model.Color;
 import g57973.chess.model.Model;
+import g57973.chess.model.Piece;
 import g57973.chess.model.Position;
 import java.util.Scanner;
 
@@ -31,35 +32,48 @@ public class TextView implements View {
     public void displayWinner() {
         System.out.println("Vous êtes le gagnant :");
     }
-    
-    
+
     @Override
     public void displayBoard() {
 
-        System.out.print("Voici le plateau de jeu actuel");
-        for (int i = 0; i < 8; i++) {
-            System.out.println(i + 1);
-            System.out.println("|");
+        System.out.println("Voici le plateau de jeu actuel");
+
+        int row = 7;
+        int column = 0;
+        System.out.println("  " + "-".repeat(56));
+
+        for (int i = 8; 0 < i; i--) {
+            System.out.print(i + " |");//cpt lignes
 
             for (int j = 0; j < 8; j++) {
-                Position pos = new Position(i, j);
-                if (model.getPiece(pos) == null) {
-                    System.out.print(" ");
-                }
-                if (model.getPiece(pos).getColor() == Color.BLACK) {
-                    System.out.print("PN");
-                }
-                if (model.getPiece(pos).getColor() == Color.WHITE) {
-                    System.out.print("PB");
-                }
-            }
-            System.out.print("|");
-           
-        }
-        System.out.println("A B C D E F G H");
-    }
-  
 
+                if (column == 8) {
+                    column = 0;
+                    row--;
+                }
+                Position pos = new Position(row, column);
+                Piece piece = this.model.getPiece(pos);
+
+                if (piece != null) {
+                    if (piece.getColor().equals(Color.WHITE)) {
+                        System.out.print("PB | ");
+                    } else {
+                        System.out.print("PN | ");
+                    }
+                } else {
+                    System.out.print("     | ");
+                }
+                column++;
+            }
+            System.out.println();
+            System.out.println("  " + "-".repeat(56));
+
+        }
+        System.out.println(" ".repeat(6) + "a" + " ".repeat(6) + "b" + " ".repeat(6) + "c" + " ".repeat(6) + "d" + " ".repeat(6) + "e" + " ".repeat(6) + "f" + " ".repeat(6) + "g" + " ".repeat(6) + "h");
+    }
+    
+    
+    
     @Override
     public void displayPlayer() {
         System.out.println(model.getCurrentPlayer());
@@ -69,14 +83,13 @@ public class TextView implements View {
     @Override
     public Position askPosition() {
         Scanner clavier = new Scanner(System.in);
-        System.out.println("Entrez une position : ");
+        System.out.println("Entrez une position au format ligne_" + " espace " + "_colonne : ");
         Position nvpos = new Position(clavier.nextInt(), clavier.nextInt());
         return nvpos;
     }
 
     @Override
     public void displayError(String message) {
-
+        System.out.println("Erreur : " + message);
     }
-
 }
