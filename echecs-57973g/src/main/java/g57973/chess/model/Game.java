@@ -20,16 +20,21 @@ public class Game implements Model {
     private Player currentPlayer;
 
     public Game(Board board, Player WHITE, Player BLACK) {
-        this.board = board;
+        this.board = new Board();
         this.WHITE = WHITE;
         this.BLACK = BLACK;
     }
 
+    
+    
+
+    
+    
+
     @Override
     public void start() {
         currentPlayer = this.WHITE;
-        board = new Board();
-
+        
     }
 
     @Override
@@ -71,6 +76,11 @@ public class Game implements Model {
     public boolean isGameOver() {
         boolean gameOver = true;
 
+        if (board.getPositionOccupiedBy(getCurrentPlayer()).isEmpty()) {
+            gameOver = true;
+        }
+        
+        
         for (Position pos : board.getPositionOccupiedBy(getCurrentPlayer())) {
             if (getPossibleMoves(pos).isEmpty()) {
                 gameOver = false;

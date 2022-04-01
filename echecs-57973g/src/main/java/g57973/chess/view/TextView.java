@@ -39,7 +39,7 @@ public class TextView implements View {
         System.out.print("Voici le plateau de jeu actuel");
         for (int i = 0; i < 8; i++) {
             System.out.println(i + 1);
-            System.out.print("|");
+            System.out.println("|");
 
             for (int j = 0; j < 8; j++) {
                 Position pos = new Position(i, j);
@@ -58,9 +58,11 @@ public class TextView implements View {
         }
         System.out.println("A B C D E F G H");
     }
+  
 
     @Override
     public void displayPlayer() {
+        System.out.println(model.getCurrentPlayer());
 
     }
 
