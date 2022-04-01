@@ -29,7 +29,7 @@ public class PieceTest {
     }
 
     @Test
-    public void testGetPossibleMovesP() {
+    public void testGetPossibleMovesP1() {
         Position position = new Position(1,1);
         Piece piece = new Piece(Color.WHITE);
         board.setPiece(piece, position);
@@ -44,7 +44,7 @@ public class PieceTest {
         assertEqualsIgnoringOrder(expected, positions);
     }
     
-        
+    
     /*********  A vous d'écrire les autres cas.
                 Veuillez faire attention à avoir un plan
                 de test complet (comme précisé dans l'énoncé)

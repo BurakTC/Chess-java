@@ -5,9 +5,10 @@
  */
 package g57973.chess.view;
 
-import g57973.chess.model.Board;
+import g57973.chess.model.Color;
 import g57973.chess.model.Model;
 import g57973.chess.model.Position;
+import java.util.Scanner;
 
 /**
  *
@@ -28,28 +29,52 @@ public class TextView implements View {
 
     @Override
     public void displayWinner() {
-        System.out.println();
+        System.out.println("Vous êtes le gagnant :");
     }
-
+    
+    
     @Override
     public void displayBoard() {
-        
 
+        System.out.print("Voici le plateau de jeu actuel");
+        for (int i = 0; i < 8; i++) {
+            System.out.println(i + 1);
+            System.out.print("|");
+
+            for (int j = 0; j < 8; j++) {
+                Position pos = new Position(i, j);
+                if (model.getPiece(pos) == null) {
+                    System.out.print(" ");
+                }
+                if (model.getPiece(pos).getColor() == Color.BLACK) {
+                    System.out.print("PN");
+                }
+                if (model.getPiece(pos).getColor() == Color.WHITE) {
+                    System.out.print("PB");
+                }
+            }
+            System.out.print("|");
+           
+        }
+        System.out.println("A B C D E F G H");
     }
 
     @Override
     public void displayPlayer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
     public Position askPosition() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Scanner clavier = new Scanner(System.in);
+        System.out.println("Entrez une position : ");
+        Position nvpos = new Position(clavier.nextInt(), clavier.nextInt());
+        return nvpos;
     }
 
     @Override
     public void displayError(String message) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
 }

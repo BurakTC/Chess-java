@@ -48,7 +48,11 @@ public class Board {
      * @param pos puts a piece at the given position
      */
     public void setPiece(Piece piece, Position pos) {
-        squares[pos.getRow()][pos.getColumn()].setPiece(piece);
+        if (contains(pos)) {
+            squares[pos.getRow()][pos.getColumn()].setPiece(piece);
+        } else {
+            throw new IllegalArgumentException("Le plateau ne contient pas la position donnée");
+        }
     }
     //pour ajouter une piece dans une case precise 
     //squares[5][6].setPiece(new Piece(Color.WHITE));
@@ -60,7 +64,7 @@ public class Board {
      * the given position is not in the game board
      */
     public Piece getPiece(Position pos) {
-        if (!contains(pos) ) {
+        if (!contains(pos)) {
             throw new IllegalArgumentException("La position donnée n'est pas dans le plateau");
         } else {
             return squares[pos.getRow()][pos.getColumn()].getPiece();
@@ -122,7 +126,6 @@ public class Board {
             throw new IllegalArgumentException("La position donnée n'est pas dans le plateau");
         }
 
-        
         Square var = squares[pos.getRow()][pos.getColumn()];
         return !var.isFree() && var.getPiece().getColor() == col.opposite();
     }
@@ -139,19 +142,16 @@ public class Board {
             for (int j = 0; j < squares.length; j++) {
                 if (squares[i][j].getPiece() != null
                         && squares[i][j].getPiece().getColor() == player.getColor()) {
-                    posList.add(new Position(i,j));
+                    posList.add(new Position(i, j));
                 }
             }
         }
         return posList;
     }
 }
-/** pub void displayBoard(){
-        var n = Board,N
-        * for(int i=n-1; i>=0; i--)
-        * sout("\n")
-        * for(int j=0;j<Board.N;j++)
-        * var square = game.getSquare(new Position[i][j]);
-        * 
-        
-        */
+/**
+ * pub void displayBoard(){ var n = Board,N for(int i=n-1; i>=0; i--) sout("\n")
+ * for(int j=0;j<Board.N;j++) var square = game.getSquare(new Position[i][j]);
+ *
+ *
+ */

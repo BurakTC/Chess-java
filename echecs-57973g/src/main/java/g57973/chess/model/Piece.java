@@ -42,7 +42,9 @@ public class Piece {
 
         Position pos1;
         Position pos2;
-
+        if (!board.contains(position)) {
+            throw new IllegalArgumentException("La position donnée n'est pas sur le plateau");
+        }
         if (!board.isFree(position)) {
             
             //PION BLANC

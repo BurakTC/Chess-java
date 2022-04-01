@@ -13,7 +13,7 @@ import java.util.List;
  * @author g57973
  */
 public class Game implements Model {
-
+//JAVADOC DANS LA CLASSE MODEL
     private Board board;
     private final Player WHITE;
     private final Player BLACK;
@@ -69,38 +69,38 @@ public class Game implements Model {
 
     @Override
     public boolean isGameOver() {
-        boolean gameOver =false;
-        Position pos;
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if(board.getPositionOccupiedBy(BLACK).){
-                    gameOver = true;
-                }
-                    
+        boolean gameOver = true;
+
+        for (Position pos : board.getPositionOccupiedBy(getCurrentPlayer())) {
+            if (getPossibleMoves(pos).isEmpty()) {
+                gameOver = false;
+
             }
+
         }
-            
-        
-    
-    
+        return gameOver;
     }
-        /**
-         * boolean gameOver = false;
-        List<Position> positions = new ArrayList();
-        for (int i = 0; i <= positions.size(); i++) {
-            if (getPiece(positions.get(i)).getPossibleMoves(positions.get(i), board).isEmpty()) {
-                gameOver = true;
-            }
-        }
 
-        return gameOver;*/
-    
+    /**
+     * for (int j = 0; j < 8; j++) { Position pos = new Position(i,j);
+     *
+     * if (board.getPositionOccupiedBy(WHITE).isEmpty()){ gameOver = true; } if
+     * (board.getPositionOccupiedBy(BLACK).isEmpty()){ gameOver = true; } if
+     * (getPossibleMoves(pos).isEmpty()) { gameOver = true; } } }
+     *
+     */
 
-    
-    
+    /**
+     * boolean gameOver = false; List<Position> positions = new ArrayList(); for
+     * (int i = 0; i <= positions.size(); i++) { if
+     * (getPiece(positions.get(i)).getPossibleMoves(positions.get(i),
+     * board).isEmpty()) { gameOver = true; } }
+     *
+     * return gameOver;
+     */
     @Override
     public List<Position> getPossibleMoves(Position position) {
         return board.getPiece(position).getPossibleMoves(position, board);
     }
-
+ 
 }
