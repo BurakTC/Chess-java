@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package g57973.chess.view;
 
+import g57973.chess.model.Board;
 import g57973.chess.model.Model;
 import g57973.chess.model.Position;
 

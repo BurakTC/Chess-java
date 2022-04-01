@@ -69,7 +69,23 @@ public class Game implements Model {
 
     @Override
     public boolean isGameOver() {
-        boolean gameOver = false;
+        boolean gameOver =false;
+        Position pos;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if(board.getPositionOccupiedBy(BLACK).){
+                    gameOver = true;
+                }
+                    
+            }
+        }
+            
+        
+    
+    
+    }
+        /**
+         * boolean gameOver = false;
         List<Position> positions = new ArrayList();
         for (int i = 0; i <= positions.size(); i++) {
             if (getPiece(positions.get(i)).getPossibleMoves(positions.get(i), board).isEmpty()) {
@@ -77,8 +93,8 @@ public class Game implements Model {
             }
         }
 
-        return gameOver;
-    }
+        return gameOver;*/
+    
 
     
     
