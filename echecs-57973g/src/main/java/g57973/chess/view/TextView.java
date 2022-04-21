@@ -88,11 +88,11 @@ public class TextView implements View {
         System.out.println("Entrez la position du pion à déplacer -> ligne,colonne");
         String posDepart = clavier.nextLine();
 
-        char cligne = posDepart.charAt(0);
-        char ccolonne = posDepart.charAt(1);
+        char eligne = posDepart.charAt(0);
+        char ecolonne = posDepart.charAt(1);
         int ligne;
         int colonne;
-        switch (cligne) {
+        switch (eligne) {
             case '1':
                 ligne = 0;
                 break;
@@ -118,11 +118,10 @@ public class TextView implements View {
                 ligne = 7;
                 break;
             default:
-                throw new IllegalArgumentException("erreurdep");
+                throw new IllegalArgumentException("Position mal entrée !");
 
         }
-        switch (ccolonne) {
-
+        switch (ecolonne) {
             case 'a':
                 colonne = 0;
                 break;
@@ -148,7 +147,7 @@ public class TextView implements View {
                 colonne = 7;
                 break;
             default:
-                throw new IllegalArgumentException("erreur dep");
+                throw new IllegalArgumentException("Position mal entrée !");
         }
 
         Position oldPos = new Position(ligne, colonne);
@@ -158,11 +157,11 @@ public class TextView implements View {
         System.out.println("Entrez la position destinataire -> ligne,colonne");
         String destination = clavier.nextLine();
 
-        char cligneDest = destination.charAt(0);
-        char ccolDest = destination.charAt(1);
+        char eligneDest = destination.charAt(0);
+        char ecolDest = destination.charAt(1);
         int ligneDest;
         int colDest;
-        switch (cligneDest) {
+        switch (eligneDest) {
             case '1':
                 ligneDest = 0;
                 break;
@@ -187,10 +186,10 @@ public class TextView implements View {
             case '8':
                 ligneDest = 7;
             default:
-                throw new IllegalArgumentException("erreur dest");
+                throw new IllegalArgumentException("Position mal entrée !");
 
         }
-        switch (ccolDest) {
+        switch (ecolDest) {
 
             case 'a':
                 colDest = 0;
@@ -217,7 +216,7 @@ public class TextView implements View {
                 colDest = 7;
                 break;
             default:
-                throw new IllegalArgumentException("erreur destination");
+                throw new IllegalArgumentException("Position mal entrée !");
 
         }
 

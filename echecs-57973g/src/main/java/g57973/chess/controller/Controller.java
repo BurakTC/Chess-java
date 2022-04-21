@@ -29,12 +29,12 @@ public class Controller {
         view.displayTitle();
 
         model.start();
-        
+
         while (!gameIsOver) {
             view.displayBoard();
-            view.displayPlayer();            
+            view.displayPlayer();
             view.askPosition();
-            
+
         }
         view.displayWinner();
     }
