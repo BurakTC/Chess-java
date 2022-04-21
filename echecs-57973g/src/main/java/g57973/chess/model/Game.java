@@ -31,10 +31,10 @@ public class Game implements Model {
         currentPlayer = this.WHITE;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if(i ==6 || i==7){
+                if(i == board.getInitialPawnRow(Color.BLACK)){
                     board.setPiece(new Piece(Color.BLACK),new Position(i,j));
                 }
-                if (i==0 || i==1) {
+                if (i== board.getInitialPawnRow(Color.WHITE)) {
                     board.setPiece(new Piece(Color.WHITE),new Position(i,j));
                     
                 }
@@ -75,7 +75,7 @@ public class Game implements Model {
     @Override
     public void movePiecePosition(Position oldPos, Position newPos) {
         if ((!board.contains(oldPos)) || (!board.contains(newPos)) || (board.isFree(oldPos))
-                //|| board.getPiece(oldPos).getPossibleMoves(oldPos, board).contains(newPos)
+                || !board.getPiece(oldPos).getPossibleMoves(oldPos, board).contains(newPos)
                 ){ 
                 
             throw new IllegalArgumentException("La position donnée n'est pas dans le plateau");
