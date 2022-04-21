@@ -29,6 +29,21 @@ public class Game implements Model {
     @Override
     public void start() {
         currentPlayer = this.WHITE;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if(i ==6 || i==7){
+                    board.setPiece(new Piece(Color.BLACK),new Position(i,j));
+                }
+                if (i==0 || i==1) {
+                    board.setPiece(new Piece(Color.WHITE),new Position(i,j));
+                    
+                }
+                
+            }
+            
+        }
+        
+        
 
     }
 
@@ -90,22 +105,7 @@ public class Game implements Model {
         return gameOver;
     }
 
-    /**
-     * for (int j = 0; j < 8; j++) { Position pos = new Position(i,j);
-     *
-     * if (board.getPositionOccupiedBy(WHITE).isEmpty()){ gameOver = true; } if
-     * (board.getPositionOccupiedBy(BLACK).isEmpty()){ gameOver = true; } if
-     * (getPossibleMoves(pos).isEmpty()) { gameOver = true; } } }
-     *
-     */
-    /**
-     * boolean gameOver = false; List<Position> positions = new ArrayList(); for
-     * (int i = 0; i <= positions.size(); i++) { if
-     * (getPiece(positions.get(i)).getPossibleMoves(positions.get(i),
-     * board).isEmpty()) { gameOver = true; } }
-     *
-     * return gameOver;
-     */
+    
     @Override
     public List<Position> getPossibleMoves(Position position) {
         return board.getPiece(position).getPossibleMoves(position, board);

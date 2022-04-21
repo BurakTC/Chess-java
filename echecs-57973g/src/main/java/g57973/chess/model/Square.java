@@ -31,7 +31,7 @@ public class Square {
      * @return the contained pawn
      */
     public Piece getPiece() {
-        return piece;
+        return this.piece;
     }
 
     /**

@@ -17,7 +17,7 @@ import java.util.Scanner;
  */
 public class TextView implements View {
 
-    private Model model;
+    private final Model model;
 
     public TextView(Model model) {
         this.model = model;
@@ -56,9 +56,9 @@ public class TextView implements View {
 
                 if (piece != null) {
                     if (piece.getColor().equals(Color.WHITE)) {
-                        System.out.print("PB | ");
+                        System.out.print("  PB | ");
                     } else {
-                        System.out.print("PN | ");
+                        System.out.print("  PN | ");
                     }
                 } else {
                     System.out.print("     | ");
@@ -71,25 +71,144 @@ public class TextView implements View {
         }
         System.out.println(" ".repeat(6) + "a" + " ".repeat(6) + "b" + " ".repeat(6) + "c" + " ".repeat(6) + "d" + " ".repeat(6) + "e" + " ".repeat(6) + "f" + " ".repeat(6) + "g" + " ".repeat(6) + "h");
     }
-    
-    
-    
+
     @Override
     public void displayPlayer() {
-        System.out.println(model.getCurrentPlayer());
+        if (model.getCurrentPlayer().getColor() == Color.WHITE) {
+            System.out.println("Au tour du joueur BLANC !");
+        } else {
+            System.out.println("Au tour du joueur NOIR !");
+        }
 
     }
 
     @Override
     public Position askPosition() {
         Scanner clavier = new Scanner(System.in);
-        System.out.println("Entrez une position au format ligne_" + " espace " + "_colonne : ");
-        Position nvpos = new Position(clavier.nextInt(), clavier.nextInt());
-        return nvpos;
+        System.out.println("Entrez la position du pion à déplacer -> ligne,colonne");
+        String posDepart = clavier.nextLine();
+
+        int ligne = posDepart.charAt(0);
+        int colonne = posDepart.charAt(1);
+
+        switch (ligne) {
+            case '1':
+                ligne = 7;
+                break;
+            case '2':
+                ligne = 6;
+                break;
+            case '3':
+                ligne = 5;
+                break;
+            case '4':
+                ligne = 4;
+                break;
+            case '5':
+                ligne = 3;
+                break;
+            case '6':
+                ligne = 2;
+                break;
+            case '7':
+                ligne = 1;
+                break;
+        }
+        switch (colonne) {
+
+            case 'a':
+                colonne = 0;
+                break;
+            case 'b':
+                colonne = 1;
+                break;
+            case 'c':
+                colonne = 2;
+                break;
+            case 'd':
+                colonne = 3;
+                break;
+            case 'e':
+                colonne = 4;
+                break;
+            case 'f':
+                colonne = 5;
+                break;
+            case 'g':
+                colonne = 6;
+                break;
+            case 'h':
+                colonne = 7;
+                break;
+        }
+        Position oldPos = new Position(ligne,colonne);
+
+        System.out.println("Entrez la position destinataire -> ligne,colonne");
+        String destination = clavier.nextLine();
+        
+        char ligneDest = destination.charAt(0);
+        char colDest = destination.charAt(1);
+        
+        switch (ligneDest) {
+            case '1':
+                ligneDest = 7;
+                break;
+            case '2':
+                ligneDest = 6;
+                break;
+            case '3':
+                ligneDest = 5;
+                break;
+            case '4':
+                ligneDest = 4;
+                break;
+            case '5':
+                ligneDest = 3;
+                break;
+            case '6':
+                ligneDest = 2;
+                break;
+            case '7':
+                ligneDest = 1;
+                break;
+        }
+        switch (colDest) {
+
+            case 'a':
+                colDest = 0;
+                break;
+            case 'b':
+                colDest = 1;
+                break;
+            case 'c':
+                colDest = 2;
+                break;
+            case 'd':
+                colDest = 3;
+                break;
+            case 'e':
+                colDest = 4;
+                break;
+            case 'f':
+                colDest = 5;
+                break;
+            case 'g':
+                colDest = 6;
+                break;
+            case 'h':
+                colDest = 7;
+                break;
+        }
+        
+        Position newPos = new Position(ligneDest, colDest);
+        model.movePiecePosition(oldPos, newPos);
+        return newPos;
     }
 
     @Override
     public void displayError(String message) {
         System.out.println("Erreur : " + message);
     }
+
+   
 }
