@@ -94,27 +94,31 @@ public class TextView implements View {
         int colonne;
         switch (cligne) {
             case '1':
-                ligne = 7;
+                ligne = 0;
                 break;
             case '2':
-                ligne = 6;
-                break;
-            case '3':
-                ligne = 5;
-                break;
-            case '4':
-                ligne = 4;
-                break;
-            case '5':
-                ligne = 3;
-                break;
-            case '6':
-                ligne = 2;
-                break;
-            case '7':
                 ligne = 1;
                 break;
-            default : throw new IllegalArgumentException("erreurdep");
+            case '3':
+                ligne = 2;
+                break;
+            case '4':
+                ligne = 3;
+                break;
+            case '5':
+                ligne = 4;
+                break;
+            case '6':
+                ligne = 5;
+                break;
+            case '7':
+                ligne = 6;
+                break;
+                case '8':
+                ligne = 7;
+                break;
+            default:
+                throw new IllegalArgumentException("erreurdep");
 
         }
         switch (ccolonne) {
@@ -143,43 +147,47 @@ public class TextView implements View {
             case 'h':
                 colonne = 7;
                 break;
-            default : throw new IllegalArgumentException("erreur dep");
+            default:
+                throw new IllegalArgumentException("erreur dep");
         }
-        
-        Position oldPos = new Position(ligne,colonne);
+
+        Position oldPos = new Position(ligne, colonne);
         System.out.println(oldPos.getRow());
         System.out.println(oldPos.getColumn());
 
         System.out.println("Entrez la position destinataire -> ligne,colonne");
         String destination = clavier.nextLine();
-        
+
         char cligneDest = destination.charAt(0);
         char ccolDest = destination.charAt(1);
         int ligneDest;
         int colDest;
         switch (cligneDest) {
             case '1':
-                ligneDest = 7;
+                ligneDest = 0;
                 break;
             case '2':
-                ligneDest = 6;
-                break;
-            case '3':
-                ligneDest = 5;
-                break;
-            case '4':
-                ligneDest = 4;
-                break;
-            case '5':
-                ligneDest = 3;
-                break;
-            case '6':
-                ligneDest = 2;
-                break;
-            case '7':
                 ligneDest = 1;
                 break;
-                            default : throw new IllegalArgumentException("erreur dest");
+            case '3':
+                ligneDest = 2;
+                break;
+            case '4':
+                ligneDest = 3;
+                break;
+            case '5':
+                ligneDest = 4;
+                break;
+            case '6':
+                ligneDest = 5;
+                break;
+            case '7':
+                ligneDest = 6;
+                break;
+            case '8':
+                ligneDest = 7;
+            default:
+                throw new IllegalArgumentException("erreur dest");
 
         }
         switch (ccolDest) {
@@ -208,14 +216,15 @@ public class TextView implements View {
             case 'h':
                 colDest = 7;
                 break;
-                            default : throw new IllegalArgumentException("erreur destination");
+            default:
+                throw new IllegalArgumentException("erreur destination");
 
         }
-        
+
         Position newPos = new Position(ligneDest, colDest);
         System.out.println(newPos.getRow());
         System.out.println(newPos.getColumn());
-        
+
         model.movePiecePosition(oldPos, newPos);
         return newPos;
     }
@@ -225,5 +234,4 @@ public class TextView implements View {
         System.out.println("Erreur : " + message);
     }
 
-   
 }
