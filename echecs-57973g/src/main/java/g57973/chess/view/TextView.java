@@ -88,10 +88,11 @@ public class TextView implements View {
         System.out.println("Entrez la position du pion à déplacer -> ligne,colonne");
         String posDepart = clavier.nextLine();
 
-        int ligne = posDepart.charAt(0);
-        int colonne = posDepart.charAt(1);
-
-        switch (ligne) {
+        char cligne = posDepart.charAt(0);
+        char ccolonne = posDepart.charAt(1);
+        int ligne;
+        int colonne;
+        switch (cligne) {
             case '1':
                 ligne = 7;
                 break;
@@ -113,8 +114,10 @@ public class TextView implements View {
             case '7':
                 ligne = 1;
                 break;
+            default : throw new IllegalArgumentException("erreurdep");
+
         }
-        switch (colonne) {
+        switch (ccolonne) {
 
             case 'a':
                 colonne = 0;
@@ -140,16 +143,21 @@ public class TextView implements View {
             case 'h':
                 colonne = 7;
                 break;
+            default : throw new IllegalArgumentException("erreur dep");
         }
+        
         Position oldPos = new Position(ligne,colonne);
+        System.out.println(oldPos.getRow());
+        System.out.println(oldPos.getColumn());
 
         System.out.println("Entrez la position destinataire -> ligne,colonne");
         String destination = clavier.nextLine();
         
-        char ligneDest = destination.charAt(0);
-        char colDest = destination.charAt(1);
-        
-        switch (ligneDest) {
+        char cligneDest = destination.charAt(0);
+        char ccolDest = destination.charAt(1);
+        int ligneDest;
+        int colDest;
+        switch (cligneDest) {
             case '1':
                 ligneDest = 7;
                 break;
@@ -171,8 +179,10 @@ public class TextView implements View {
             case '7':
                 ligneDest = 1;
                 break;
+                            default : throw new IllegalArgumentException("erreur dest");
+
         }
-        switch (colDest) {
+        switch (ccolDest) {
 
             case 'a':
                 colDest = 0;
@@ -198,9 +208,14 @@ public class TextView implements View {
             case 'h':
                 colDest = 7;
                 break;
+                            default : throw new IllegalArgumentException("erreur destination");
+
         }
         
         Position newPos = new Position(ligneDest, colDest);
+        System.out.println(newPos.getRow());
+        System.out.println(newPos.getColumn());
+        
         model.movePiecePosition(oldPos, newPos);
         return newPos;
     }

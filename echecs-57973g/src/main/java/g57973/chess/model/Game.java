@@ -74,8 +74,10 @@ public class Game implements Model {
 
     @Override
     public void movePiecePosition(Position oldPos, Position newPos) {
-        if ((!board.contains(oldPos)) || (!board.contains(newPos)) || (!board.isFree(oldPos))
-                || board.getPiece(oldPos).getPossibleMoves(oldPos, board).contains(newPos)) {
+        if ((!board.contains(oldPos)) || (!board.contains(newPos)) || (board.isFree(oldPos))
+                //|| board.getPiece(oldPos).getPossibleMoves(oldPos, board).contains(newPos)
+                ){ 
+                
             throw new IllegalArgumentException("La position donnée n'est pas dans le plateau");
         } else {
             Piece cettePiece = board.getPiece(oldPos);
