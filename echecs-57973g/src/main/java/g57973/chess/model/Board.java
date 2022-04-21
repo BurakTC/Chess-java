@@ -149,9 +149,3 @@ public class Board {
         return posList;
     }
 }
-/**
- * pub void displayBoard(){ var n = Board,N for(int i=n-1; i>=0; i--) sout("\n")
- * for(int j=0;j<Board.N;j++) var square = game.getSquare(new Position[i][j]);
- *
- *
- */

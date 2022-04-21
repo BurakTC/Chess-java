@@ -30,7 +30,7 @@ public class TextView implements View {
 
     @Override
     public void displayWinner() {
-        System.out.println("Vous êtes le gagnant :");
+        System.out.println("Vous êtes le gagnant :"+model.getCurrentPlayer());
     }
 
     @Override

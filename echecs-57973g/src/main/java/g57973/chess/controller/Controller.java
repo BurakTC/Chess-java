@@ -34,7 +34,7 @@ public class Controller {
             view.displayBoard();
             view.displayPlayer();
             view.askPosition();
-
+            
         }
         view.displayWinner();
     }
