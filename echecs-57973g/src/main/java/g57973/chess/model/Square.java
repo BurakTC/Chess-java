@@ -5,6 +5,8 @@
  */
 package g57973.chess.model;
 
+import g57973.chess.model.pieces.Piece;
+
 /**
  * This class represents one of the 64 squares on the game board
  *

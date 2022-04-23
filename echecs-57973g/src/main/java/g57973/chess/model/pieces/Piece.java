@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package g57973.chess.model;
+package g57973.chess.model.pieces;
 
+import g57973.chess.model.Board;
+import g57973.chess.model.Color;
+import g57973.chess.model.Direction;
+import g57973.chess.model.Position;
 import java.util.List;
 import java.util.ArrayList;
 

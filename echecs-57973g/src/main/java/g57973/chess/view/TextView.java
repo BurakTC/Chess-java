@@ -7,7 +7,7 @@ package g57973.chess.view;
 
 import g57973.chess.model.Color;
 import g57973.chess.model.Model;
-import g57973.chess.model.Piece;
+import g57973.chess.model.pieces.Piece;
 import g57973.chess.model.Position;
 import java.util.Scanner;
 
@@ -30,7 +30,7 @@ public class TextView implements View {
 
     @Override
     public void displayWinner() {
-        System.out.println("Vous êtes le gagnant :"+model.getCurrentPlayer());
+        System.out.println("Vous êtes le gagnant :" + model.getCurrentPlayer());
     }
 
     @Override
@@ -74,22 +74,16 @@ public class TextView implements View {
 
     @Override
     public void displayPlayer() {
-        if (model.getCurrentPlayer().getColor() == Color.WHITE) {
-            System.out.println("Au tour du joueur BLANC !");
-        } else {
-            System.out.println("Au tour du joueur NOIR !");
-        }
-
+        System.out.println("Au tour du joueur " + model.getCurrentPlayer().getColor());
     }
 
     @Override
     public Position askPosition() {
         Scanner clavier = new Scanner(System.in);
-        System.out.println("Entrez la position du pion à déplacer -> ligne,colonne");
-        String posDepart = clavier.nextLine();
+        String oldPos = clavier.nextLine();
 
-        char eligne = posDepart.charAt(0);
-        char ecolonne = posDepart.charAt(1);
+        char eligne = oldPos.charAt(0);
+        char ecolonne = oldPos.charAt(1);
         int ligne;
         int colonne;
         switch (eligne) {
@@ -114,7 +108,7 @@ public class TextView implements View {
             case '7':
                 ligne = 6;
                 break;
-                case '8':
+            case '8':
                 ligne = 7;
                 break;
             default:
@@ -150,81 +144,7 @@ public class TextView implements View {
                 throw new IllegalArgumentException("Position mal entrée !");
         }
 
-        Position oldPos = new Position(ligne, colonne);
-        System.out.println(oldPos.getRow());
-        System.out.println(oldPos.getColumn());
-
-        System.out.println("Entrez la position destinataire -> ligne,colonne");
-        String destination = clavier.nextLine();
-
-        char eligneDest = destination.charAt(0);
-        char ecolDest = destination.charAt(1);
-        int ligneDest;
-        int colDest;
-        switch (eligneDest) {
-            case '1':
-                ligneDest = 0;
-                break;
-            case '2':
-                ligneDest = 1;
-                break;
-            case '3':
-                ligneDest = 2;
-                break;
-            case '4':
-                ligneDest = 3;
-                break;
-            case '5':
-                ligneDest = 4;
-                break;
-            case '6':
-                ligneDest = 5;
-                break;
-            case '7':
-                ligneDest = 6;
-                break;
-            case '8':
-                ligneDest = 7;
-            default:
-                throw new IllegalArgumentException("Position mal entrée !");
-
-        }
-        switch (ecolDest) {
-
-            case 'a':
-                colDest = 0;
-                break;
-            case 'b':
-                colDest = 1;
-                break;
-            case 'c':
-                colDest = 2;
-                break;
-            case 'd':
-                colDest = 3;
-                break;
-            case 'e':
-                colDest = 4;
-                break;
-            case 'f':
-                colDest = 5;
-                break;
-            case 'g':
-                colDest = 6;
-                break;
-            case 'h':
-                colDest = 7;
-                break;
-            default:
-                throw new IllegalArgumentException("Position mal entrée !");
-
-        }
-
-        Position newPos = new Position(ligneDest, colDest);
-        System.out.println(newPos.getRow());
-        System.out.println(newPos.getColumn());
-
-        model.movePiecePosition(oldPos, newPos);
+        Position newPos = new Position(ligne, colonne);
         return newPos;
     }
 

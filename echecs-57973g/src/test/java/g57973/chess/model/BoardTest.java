@@ -6,6 +6,7 @@
 package g57973.chess.model;
 
 
+import g57973.chess.model.pieces.Piece;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

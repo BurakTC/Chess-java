@@ -7,6 +7,7 @@ package g57973.chess.controller;
 
 import g57973.chess.model.Game;
 import g57973.chess.model.Model;
+import g57973.chess.model.Position;
 import g57973.chess.view.TextView;
 import g57973.chess.view.View;
 
@@ -27,14 +28,20 @@ public class Controller {
     public void play() {
         boolean gameIsOver = false;
         view.displayTitle();
-
         model.start();
 
         while (!gameIsOver) {
             view.displayBoard();
             view.displayPlayer();
-            view.askPosition();
-            
+
+            System.out.println("Entrez une position de départ :");
+            Position oldPos = view.askPosition();
+            System.out.println("Entrez la position de destination :");
+            Position newPos = view.askPosition();
+
+            model.movePiecePosition(oldPos, newPos);
+
+
         }
         view.displayWinner();
     }
