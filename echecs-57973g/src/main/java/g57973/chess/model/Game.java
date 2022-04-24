@@ -70,7 +70,7 @@ public class Game implements Model {
     @Override
     public void movePiecePosition(Position oldPos, Position newPos) {
         Piece cettePiece = board.getPiece(oldPos);
-        
+
         if ((!board.contains(oldPos)) || (!board.contains(newPos))) {
             throw new IllegalArgumentException("Une des positions données n'est pas dans le plateau");
         }

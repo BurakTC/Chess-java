@@ -107,11 +107,9 @@ public class Board {
     public boolean isFree(Position pos) {
         if (contains(pos)) {
             return this.squares[pos.getRow()][pos.getColumn()].getPiece() == null;
-
         } else {
             throw new IllegalArgumentException("La position donnée n'est pas dans le plateau");
         }
-
     }
 
     /**
@@ -123,7 +121,7 @@ public class Board {
      * IllegalArgumentException if the given position is not in the game board.
      */
     public boolean containsOppositeColor(Position pos, Color col) {
-        if (!contains(pos)) {
+        if(!contains(pos)) {
             throw new IllegalArgumentException("La position donnée n'est pas dans le plateau");
         }
 
