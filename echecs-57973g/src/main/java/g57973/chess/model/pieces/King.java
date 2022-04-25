@@ -23,7 +23,7 @@ public class King extends Piece {
     }
 
     @Override
-    List<Position> getPossibleMoves(Position position, Board board) {
+    public List<Position> getPossibleMoves(Position position, Board board) {
         List<Position> possibleMoves = new ArrayList();
         List<Position> testMoves = new ArrayList<>();
         testMoves.add(position.next(Direction.N));

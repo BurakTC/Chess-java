@@ -23,7 +23,7 @@ public class Knight extends Piece {
     }
 
     @Override
-    List<Position> getPossibleMoves(Position position, Board board) {
+    public List<Position> getPossibleMoves(Position position, Board board) {
         List<Position> possibleMoves = new ArrayList<>();
 
         List<Position> possiblePos = new ArrayList<>();

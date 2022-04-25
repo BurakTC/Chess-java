@@ -5,6 +5,7 @@
  */
 package g57973.chess.model;
 
+import g57973.chess.model.pieces.Pawn;
 import g57973.chess.model.pieces.Piece;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class PieceTest {
     @Test
     public void testGetPossibleMovesP1() {
         Position position = new Position(1,1);
-        Piece piece = new Piece(Color.WHITE);
+        Piece piece = new Pawn(Color.WHITE);
         board.setPiece(piece, position);
 
         List<Position> expected = List.of(

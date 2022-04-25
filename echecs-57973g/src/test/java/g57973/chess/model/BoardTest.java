@@ -6,6 +6,7 @@
 package g57973.chess.model;
 
 
+import g57973.chess.model.pieces.Pawn;
 import g57973.chess.model.pieces.Piece;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,7 +71,7 @@ public class BoardTest {
     public void testIsFreePositionNotFree() {
         // When a piece is on the given positon
         Position pos = new Position(1,1);
-        board.setPiece(new Piece(Color.BLACK), pos);
+        board.setPiece(new Pawn(Color.BLACK), pos);
         
         assertFalse(board.isFree(pos));
     }
@@ -95,7 +96,7 @@ public class BoardTest {
     public void testContainsOppositeColorSameColorBlack() {
         // When the position contains a piece of the same color (black)
         Position pos = new Position(2,5);
-        board.setPiece(new Piece(Color.BLACK), pos);
+        board.setPiece(new Pawn(Color.BLACK), pos);
         assertFalse(board.containsOppositeColor(pos, Color.BLACK));
     }
     
@@ -103,7 +104,7 @@ public class BoardTest {
     public void testContainsOppositeColorSameColorWhite() {
         // When the position contains a piece of the same color (white)
         Position pos = new Position(7,7);
-        board.setPiece(new Piece(Color.WHITE), pos);
+        board.setPiece(new Pawn(Color.WHITE), pos);
         assertFalse(board.containsOppositeColor(pos, Color.WHITE));
     }
     
@@ -112,7 +113,7 @@ public class BoardTest {
         // When the position contains a piece of the opposite color 
         // White and black
         Position pos = new Position(7,7);
-        board.setPiece(new Piece(Color.WHITE), pos);
+        board.setPiece(new Pawn(Color.WHITE), pos);
         assertTrue(board.containsOppositeColor(pos, Color.BLACK));
     }
     
@@ -121,7 +122,7 @@ public class BoardTest {
         // When the position contains a piece of the opposite color 
         // black and white
         Position pos = new Position(7,7);
-        board.setPiece(new Piece(Color.BLACK), pos);
+        board.setPiece(new Pawn(Color.BLACK), pos);
         assertTrue(board.containsOppositeColor(pos, Color.WHITE));
     }
     
@@ -136,7 +137,7 @@ public class BoardTest {
         List<Position> expected = new ArrayList<>();
         
         for (int i = 0; i < 8; i++){
-            board.setPiece(new Piece(color), new Position(1,i));
+            board.setPiece(new Pawn(color), new Position(1,i));
             expected.add(new Position(1,i));
         }
         
@@ -154,13 +155,13 @@ public class BoardTest {
         List<Position> expected = new ArrayList<>();
         
       
-        board.setPiece(new Piece(color), new Position(2,0));
+        board.setPiece(new Pawn(color), new Position(2,0));
         expected.add(new Position(2,0));
         
-        board.setPiece(new Piece(color), new Position(3,2));
+        board.setPiece(new Pawn(color), new Position(3,2));
         expected.add(new Position(3,2));
         
-        board.setPiece(new Piece(color), new Position(5,5));
+        board.setPiece(new Pawn(color), new Position(5,5));
         expected.add(new Position(5,5));
         
         positions = board.getPositionOccupiedBy(player);
@@ -179,7 +180,7 @@ public class BoardTest {
         List<Position> expected = new ArrayList<>();
         
         for (int i = 0; i < 8; i++){
-            board.setPiece(new Piece(color), new Position(6,i));
+            board.setPiece(new Pawn(color), new Position(6,i));
             expected.add(new Position(6,i));
         }
         
@@ -198,16 +199,16 @@ public class BoardTest {
         List<Position> positions; 
         List<Position> expected = new ArrayList<>();
         
-        board.setPiece(new Piece(color), new Position(0,0));
+        board.setPiece(new Pawn(color), new Position(0,0));
         expected.add(new Position(0,0));
         
-        board.setPiece(new Piece(color), new Position(1,1));
+        board.setPiece(new Pawn(color), new Position(1,1));
         expected.add(new Position(1,1));
         
-        board.setPiece(new Piece(color), new Position(6,7));
+        board.setPiece(new Pawn(color), new Position(6,7));
         expected.add(new Position(6,7));
         
-        board.setPiece(new Piece(color), new Position(1,7));
+        board.setPiece(new Pawn(color), new Position(1,7));
         expected.add(new Position(1,7));
         
         positions = board.getPositionOccupiedBy(player);
