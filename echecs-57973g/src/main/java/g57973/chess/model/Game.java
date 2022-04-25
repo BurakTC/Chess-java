@@ -5,6 +5,7 @@
  */
 package g57973.chess.model;
 
+import g57973.chess.model.pieces.Pawn;
 import g57973.chess.model.pieces.Piece;
 import java.util.List;
 
@@ -32,10 +33,10 @@ public class Game implements Model {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (i == board.getInitialPawnRow(Color.BLACK)) {
-                    board.setPiece(new Piece(Color.BLACK), new Position(i, j));
+                    board.setPiece(new Pawn(Color.BLACK), new Position(i, j));
                 }
                 if (i == board.getInitialPawnRow(Color.WHITE)) {
-                    board.setPiece(new Piece(Color.WHITE), new Position(i, j));
+                    board.setPiece(new Pawn(Color.WHITE), new Position(i, j));
                     
                 }
             }
