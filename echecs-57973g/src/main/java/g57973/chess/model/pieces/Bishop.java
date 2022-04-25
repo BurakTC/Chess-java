@@ -15,9 +15,9 @@ import java.util.List;
  *
  * @author Burak
  */
-public class Rook extends Piece{
+public class Bishop extends Piece {
 
-    public Rook(Color color) {
+    public Bishop(Color color) {
         super(color);
     }
 
@@ -25,9 +25,10 @@ public class Rook extends Piece{
     public List<Position> getPossibleMoves(Position position, Board board) {
         List<Position> possibleMoves = new ArrayList<>();
         
-        getPossibleHorizon(position,board).forEach(pos -> {
+        getPossibleDiag(position,board).forEach(pos -> {
             possibleMoves.add(pos);
         });
+        
         return possibleMoves;
     }
     
