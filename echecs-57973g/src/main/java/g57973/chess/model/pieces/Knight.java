@@ -31,7 +31,8 @@ public class Knight extends Piece {
         Position nw = position.next(Direction.NW);
         Position se = position.next(Direction.SE);
         Position sw = position.next(Direction.SW);
-
+        
+        
         possiblePos.add(new Position(ne.getRow() + 1, ne.getColumn()));
         possiblePos.add(new Position(ne.getRow(), ne.getColumn() + 1));
 
@@ -44,7 +45,7 @@ public class Knight extends Piece {
         possiblePos.add(new Position(se.getRow(), se.getColumn() + 1));
         possiblePos.add(new Position(se.getRow()-1, se.getColumn()));
 
-        possiblePos.stream().filter(pos -> (board.contains(pos) && board.isFree(pos)||board.containsOppositeColor(pos, this.getColor()))).forEachOrdered(pos -> {
+        possiblePos.stream().filter(pos -> ((board.contains(pos) && board.isFree(pos))|| board.containsOppositeColor(pos, this.getColor()))).forEachOrdered(pos -> {
             possibleMoves.add(pos);
         });
         return possibleMoves;
@@ -56,5 +57,12 @@ public class Knight extends Piece {
         }
         return possibleMoves;*/
     }
-
+    @Override
+    public String toString() {
+        if(this.color==Color.WHITE){
+            return "  CB | ";
+        }else{
+            return "  CN | ";
+        } 
+    }
 }

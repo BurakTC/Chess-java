@@ -51,9 +51,9 @@ public class Board {
     public void setPiece(Piece piece, Position pos) {
         if (contains(pos)) {
             squares[pos.getRow()][pos.getColumn()].setPiece(piece);
-        } else {
-            throw new IllegalArgumentException("Le plateau ne contient pas la position donnée");
-        }
+        } //else {
+            //throw new IllegalArgumentException("Le plateau ne contient pas la position donnée");
+       // }
     }
     //pour ajouter une piece dans une case precise 
     //squares[5][6].setPiece(new Piece(Color.WHITE));
@@ -122,7 +122,7 @@ public class Board {
      */
     public boolean containsOppositeColor(Position pos, Color col) {
         if(!contains(pos)) {
-            throw new IllegalArgumentException("La position donnée n'est pas dans le plateau");
+            throw new IllegalArgumentException("La position donnée n'est pas dans le plateau containsoppo");
         }
 
         Square var = squares[pos.getRow()][pos.getColumn()];
@@ -137,8 +137,8 @@ public class Board {
     public List<Position> getPositionOccupiedBy(Player player) {
         List<Position> posList = new ArrayList<>();
 
-        for (int i = 0; i < squares.length; i++) {
-            for (int j = 0; j < squares.length; j++) {
+        for (int i = 0; i < squares.length-1; i++) {
+            for (int j = 0; j < squares.length-1; j++) {
                 if (squares[i][j].getPiece() != null
                         && squares[i][j].getPiece().getColor() == player.getColor()) {
                     posList.add(new Position(i, j));

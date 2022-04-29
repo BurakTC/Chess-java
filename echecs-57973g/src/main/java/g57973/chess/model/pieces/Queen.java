@@ -36,4 +36,12 @@ public class Queen extends Piece {
         return getEveryMoves;
 
     }
+    @Override
+    public String toString() {
+        if(this.color==Color.WHITE){
+            return "  #B | ";
+        }else{
+            return "  #N | ";
+        } 
+    }
 }

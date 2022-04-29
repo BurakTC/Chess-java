@@ -22,6 +22,7 @@ public class Pawn extends Piece {
         super(color);
     }
 
+
     @Override
     public List<Position> getPossibleMoves(Position position, Board board) {
 
@@ -31,7 +32,7 @@ public class Pawn extends Piece {
         Position pos2 = null;
 
         if (!board.contains(position)) {
-            throw new IllegalArgumentException("La position donnée n'est pas sur le plateau");
+            throw new IllegalArgumentException("La position donnée n'est pas sur le plateau possiblemoves");
         }
         if (!board.isFree(position)) {
 
@@ -111,4 +112,12 @@ public class Pawn extends Piece {
             }
             return capturePositions;
         }
+    @Override
+    public String toString() {
+        if(this.color==Color.WHITE){
+            return "  PB | ";
+        }else{
+            return "  PN | ";
+        } 
+    }
     }

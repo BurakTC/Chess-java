@@ -55,11 +55,7 @@ public class TextView implements View {
                 Piece piece = this.model.getPiece(pos);
 
                 if (piece != null) {
-                    if (piece.getColor().equals(Color.WHITE)) {
-                        System.out.print("  PB | ");
-                    } else {
-                        System.out.print("  PN | ");
-                    }
+                    System.out.print(piece);
                 } else {
                     System.out.print("     | ");
                 }
@@ -112,7 +108,7 @@ public class TextView implements View {
                 ligne = 7;
                 break;
             default:
-                throw new IllegalArgumentException("Position mal entrée !");
+                throw new IllegalArgumentException("Positionde départ mal entrée !");
 
         }
         switch (ecolonne) {
@@ -141,9 +137,9 @@ public class TextView implements View {
                 colonne = 7;
                 break;
             default:
-                throw new IllegalArgumentException("Position mal entrée !");
+                throw new IllegalArgumentException("Position de destination mal entrée !");
         }
-
+        
         Position newPos = new Position(ligne, colonne);
         return newPos;
     }

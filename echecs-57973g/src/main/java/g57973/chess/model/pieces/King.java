@@ -39,8 +39,13 @@ public class King extends Piece {
             possibleMoves.add(pos);
         });
         return possibleMoves;
-                
-
     }
-    
+    @Override
+    public String toString() {
+        if(this.color==Color.WHITE){
+            return "  *B | ";
+        }else{
+            return "  *N | ";
+        } 
+    }
 }

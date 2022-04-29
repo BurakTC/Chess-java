@@ -5,8 +5,13 @@
  */
 package g57973.chess.model;
 
+import g57973.chess.model.pieces.Bishop;
+import g57973.chess.model.pieces.King;
+import g57973.chess.model.pieces.Knight;
 import g57973.chess.model.pieces.Pawn;
 import g57973.chess.model.pieces.Piece;
+import g57973.chess.model.pieces.Queen;
+import g57973.chess.model.pieces.Rook;
 import java.util.List;
 
 /**
@@ -41,6 +46,23 @@ public class Game implements Model {
                 }
             }
         }
+        board.setPiece(new Rook(Color.WHITE), new Position(0,0));
+        board.setPiece(new Rook(Color.WHITE), new Position(0,7));
+        board.setPiece(new Knight(Color.WHITE), new Position(0,1));
+        board.setPiece(new Knight(Color.WHITE), new Position(0,6));
+        board.setPiece(new Bishop(Color.WHITE), new Position(0,2));
+        board.setPiece(new Bishop(Color.WHITE), new Position(0,5));
+        board.setPiece(new Queen(Color.WHITE), new Position(0,3));
+        board.setPiece(new King(Color.WHITE), new Position(0,4));
+        
+        board.setPiece(new Rook(Color.BLACK), new Position(7,0));
+        board.setPiece(new Rook(Color.BLACK), new Position(7,7));
+        board.setPiece(new Knight(Color.BLACK), new Position(7,1));
+        board.setPiece(new Knight(Color.BLACK), new Position(7,6));
+        board.setPiece(new Bishop(Color.BLACK), new Position(7,2));
+        board.setPiece(new Bishop(Color.BLACK), new Position(7,5));
+        board.setPiece(new Queen(Color.BLACK), new Position(7,3));
+        board.setPiece(new King(Color.BLACK), new Position(7,4));
     }
     
     @Override
@@ -89,15 +111,13 @@ public class Game implements Model {
         }
         if(!isGameOver()){
             this.currentPlayer = getOppositePlayer();
-        }
-            
-        
+        }        
         
     }
     
     @Override
     public boolean isGameOver() {
-        boolean gameOver = false;
+       /** boolean gameOver = false;
         
         if (board.getPositionOccupiedBy(getCurrentPlayer()).isEmpty()) {
             gameOver = true;
@@ -106,12 +126,10 @@ public class Game implements Model {
         for (Position pos : board.getPositionOccupiedBy(getCurrentPlayer())) {
             if (getPossibleMoves(pos).isEmpty()) {
                 gameOver = true;
-                
             }
-            
         }
-        
-        return gameOver;
+        return gameOver;*/
+       return false;
     }
     
     @Override

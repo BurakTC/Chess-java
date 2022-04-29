@@ -30,5 +30,16 @@ public class Rook extends Piece{
         });
         return possibleMoves;
     }
+
+    @Override
+    public String toString() {
+        if(this.color==Color.WHITE){
+            return "  TB | ";
+        }else{
+            return "  TN | ";
+        } 
+    }
+    
+    
     
 }

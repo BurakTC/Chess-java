@@ -32,4 +32,13 @@ public class Bishop extends Piece {
         return possibleMoves;
     }
     
+    @Override
+    public String toString() {
+        if(this.color==Color.WHITE){
+            return "  FB | ";
+        }else{
+            return "  FN  |";
+        } 
+    }
+    
 }
