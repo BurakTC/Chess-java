@@ -5,6 +5,8 @@
  */
 package g57973.chess.model;
 
+
+
 /**
  *These colors will represent those of a player, 
  * square or pawn in our game.
