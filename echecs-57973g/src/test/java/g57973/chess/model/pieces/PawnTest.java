@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package g57973.chess.model;
+package g57973.chess.model.pieces;
 
+import g57973.chess.model.Board;
+import g57973.chess.model.Color;
+import g57973.chess.model.Position;
+import g57973.chess.model.pieces.King;
 import g57973.chess.model.pieces.Pawn;
 import g57973.chess.model.pieces.Piece;
 import java.util.ArrayList;
@@ -18,11 +22,11 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author srexhep
  */
-public class PieceTest {
+public class PawnTest {
     
     Board board;
     
-    public PieceTest() {
+    public PawnTest() {
     }
     
     @BeforeEach
@@ -31,7 +35,7 @@ public class PieceTest {
     }
 
     @Test
-    public void testGetPossibleMovesP1() {
+    public void testGetPossibleMovesPawn1() {
         Position position = new Position(1,1);
         Piece piece = new Pawn(Color.WHITE);
         board.setPiece(piece, position);
@@ -45,12 +49,20 @@ public class PieceTest {
 
         assertEqualsIgnoringOrder(expected, positions);
     }
+    public void testGetPossibleMovesPawn2() {
+        Position position = new Position(7,1);
+        Piece piece = new Pawn(Color.WHITE);
+        board.setPiece(piece, position);
+
+        List<Position> expected = List.of(
+        );
+
+        List<Position> positions = piece.getPossibleMoves(position, board);
+
+        assertEqualsIgnoringOrder(expected, positions);
+    }
     
     
-    /*********  A vous d'écrire les autres cas.
-                Veuillez faire attention à avoir un plan
-                de test complet (comme précisé dans l'énoncé)
-     ************/
     
     /*
      *      Permet de tester si deux listes de positions sont identiques à l'ordre

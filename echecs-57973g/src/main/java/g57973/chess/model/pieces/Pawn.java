@@ -22,7 +22,6 @@ public class Pawn extends Piece {
         super(color);
     }
 
-
     @Override
     public List<Position> getPossibleMoves(Position position, Board board) {
 
@@ -54,16 +53,15 @@ public class Pawn extends Piece {
             if (board.getPiece(position).color == Color.BLACK) {
                 pos1 = position.next(Direction.S);
                 pos2 = pos1.next(Direction.S);
-            }
 
-            if (board.isFree(pos1)) {
-                possibleMoves.add(pos1);
+                if (board.isFree(pos1)) {
+                    possibleMoves.add(pos1);
+                }
+                if ((position.getRow() == board.getInitialPawnRow(Color.BLACK))
+                        && (board.isFree(pos2))) {
+                    possibleMoves.add(pos2);
+                }
             }
-            if ((position.getRow() == board.getInitialPawnRow(Color.BLACK))
-                    && (board.isFree(pos2))) {
-                possibleMoves.add(pos2);
-            }
-
         }
         return possibleMoves;
     }
@@ -92,32 +90,33 @@ public class Pawn extends Piece {
             }
         }
 
-            //PION NOIR
-            Position se = position.next(Direction.SE);
-            Position sw = position.next(Direction.SW);
+        //PION NOIR
+        Position se = position.next(Direction.SE);
+        Position sw = position.next(Direction.SW);
 
-            if (board.getPiece(position).getColor() == Color.BLACK) {
-                if (board.contains(se) && (board.isFree(se) || board.containsOppositeColor(se, Color.BLACK))) {
-                    if (board.containsOppositeColor(se, Color.BLACK)) {
-                        capturePositions.add(new Position(se.getRow(), se.getColumn()));
-                    }
+        if (board.getPiece(position).getColor() == Color.BLACK) {
+            if (board.contains(se) && (board.isFree(se) || board.containsOppositeColor(se, Color.BLACK))) {
+                if (board.containsOppositeColor(se, Color.BLACK)) {
+                    capturePositions.add(new Position(se.getRow(), se.getColumn()));
                 }
             }
-            if (board.getPiece(position).getColor() == Color.BLACK) {
-                if (board.contains(sw) && (board.isFree(sw) || board.containsOppositeColor(sw, Color.BLACK))) {
-                    if (board.containsOppositeColor(sw, Color.BLACK)) {
-                        capturePositions.add(new Position(sw.getRow(), sw.getColumn()));
-                    }
-                }
-            }
-            return capturePositions;
         }
+        if (board.getPiece(position).getColor() == Color.BLACK) {
+            if (board.contains(sw) && (board.isFree(sw) || board.containsOppositeColor(sw, Color.BLACK))) {
+                if (board.containsOppositeColor(sw, Color.BLACK)) {
+                    capturePositions.add(new Position(sw.getRow(), sw.getColumn()));
+                }
+            }
+        }
+        return capturePositions;
+    }
+
     @Override
     public String toString() {
-        if(this.color==Color.WHITE){
+        if (this.color == Color.WHITE) {
             return "  PB | ";
-        }else{
+        } else {
             return "  PN | ";
-        } 
+        }
     }
-    }
+}

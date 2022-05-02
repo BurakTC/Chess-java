@@ -87,7 +87,7 @@ public abstract class Piece {
 
         while (board.contains(nw) && board.isFree(nw)) {
             possibleDiag.add(nw);
-            nw = new Position(nw.getRow() + 1, nw.getColumn() - 1);
+            nw = new Position(nw.getRow() +1, nw.getColumn() -1);
         }
         while (board.contains(ne) && board.isFree(ne)) {
             possibleDiag.add(ne);
@@ -101,7 +101,6 @@ public abstract class Piece {
             possibleDiag.add(sw);
             sw = new Position(sw.getRow() - 1, sw.getColumn() - 1);
         }
-
         return possibleDiag;
     }
 
@@ -129,8 +128,6 @@ public abstract class Piece {
             possibleHorizon.add(e);
             e = new Position(e.getRow(), e.getColumn() - 1);
         }
-        
         return possibleHorizon;
     }
-
 }

@@ -35,9 +35,12 @@ public class King extends Piece {
         testMoves.add(position.next(Direction.E));
         testMoves.add(position.next(Direction.NE));
         
-        testMoves.stream().filter(pos -> (board.contains(pos) && board.isFree(pos)||board.containsOppositeColor(pos, this.getColor()))).forEachOrdered(pos -> {
-            possibleMoves.add(pos);
-        });
+
+        for(Position pos : testMoves){
+            if(board.contains(pos) && (board.isFree(pos)||board.containsOppositeColor(pos, this.getColor()))){
+                possibleMoves.add(pos);
+            }
+        }
         return possibleMoves;
     }
     @Override
