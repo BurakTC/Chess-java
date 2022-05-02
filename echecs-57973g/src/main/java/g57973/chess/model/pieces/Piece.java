@@ -82,24 +82,39 @@ public abstract class Piece {
         Position ne = position.next(Direction.NE);
         Position se = position.next(Direction.SE);
         Position sw = position.next(Direction.SW);
-
+      
         List<Position> possibleDiag = new ArrayList<>();
-
-        while (board.contains(nw) && board.isFree(nw)) {
+        
+       while (board.contains(nw)&&board.isFree(nw)) {
             possibleDiag.add(nw);
-            nw = new Position(nw.getRow() +1, nw.getColumn() -1);
+            nw = nw.next(Direction.NW);
         }
-        while (board.contains(ne) && board.isFree(ne)) {
+        if(board.contains(nw)&&board.containsOppositeColor(nw, this.color)){
+            possibleDiag.add(nw);
+        }
+        
+        while (board.contains(ne)&&board.isFree(ne)) {
             possibleDiag.add(ne);
-            ne = new Position(ne.getRow() + 1, ne.getColumn() + 1);
+            ne = ne.next(Direction.NE);
         }
-        while (board.contains(se) && board.isFree(se)) {
+        if(board.contains(ne)&&board.containsOppositeColor(ne, this.color)){
+            possibleDiag.add(ne);
+        }
+        
+        while (board.contains(se)&&board.isFree(se)) {
             possibleDiag.add(se);
-            se = new Position(se.getRow() - 1, se.getColumn() + 1);
+            se = se.next(Direction.SE);
         }
-        while (board.contains(sw) && board.isFree(sw)) {
+        if(board.contains(se)&&board.containsOppositeColor(se, this.color)){
+            possibleDiag.add(se);
+        }
+        
+        while (board.contains(sw)&&board.isFree(sw)) {
             possibleDiag.add(sw);
-            sw = new Position(sw.getRow() - 1, sw.getColumn() - 1);
+            sw = sw.next(Direction.SW);
+        }
+        if(board.contains(sw)&&board.containsOppositeColor(sw, this.color)){
+            possibleDiag.add(sw);
         }
         return possibleDiag;
     }
@@ -107,27 +122,49 @@ public abstract class Piece {
     protected List<Position> getPossibleHorizon(Position position, Board board) {
         List<Position> possibleHorizon = new ArrayList<>();
 
+        
         Position n = position.next(Direction.N);
         Position w = position.next(Direction.W);
         Position s = position.next(Direction.S);
         Position e = position.next(Direction.E);
-
-        while (board.contains(n) && board.isFree(n)) {
+        
+        while (board.contains(n)&&board.isFree(n)) {
             possibleHorizon.add(n);
-            n = new Position(n.getRow() + 1, n.getColumn());
+            n = n.next(Direction.N);
         }
-        while (board.contains(w) && board.isFree(w)) {
+        if(board.contains(n)&&board.containsOppositeColor(n, this.color)){
+            possibleHorizon.add(n);
+        }
+        
+        while (board.contains(w)&&board.isFree(w)) {
             possibleHorizon.add(w);
-            w = new Position(w.getRow(), w.getColumn() - 1);
+            w = w.next(Direction.W);
         }
-        while (board.contains(s) && board.isFree(s)) {
+        if(board.contains(w)&&board.containsOppositeColor(w, this.color)){
+            possibleHorizon.add(w);
+        }
+        
+        while (board.contains(s)&&board.isFree(s)) {
             possibleHorizon.add(s);
-            s = new Position(s.getRow() - 1, s.getColumn());
+            s = s.next(Direction.S);
         }
-        while (board.contains(e) && board.isFree(e)) {
+        if(board.contains(s)&&board.containsOppositeColor(s, this.color)){
+            possibleHorizon.add(s);
+        }
+        
+        while (board.contains(e)&&board.isFree(e)) {
             possibleHorizon.add(e);
-            e = new Position(e.getRow(), e.getColumn() - 1);
+            e = e.next(Direction.E);
         }
+        if(board.contains(e)&&board.containsOppositeColor(e, this.color)){
+            possibleHorizon.add(e);
+        }
+        
+        
+        
+        
+        
+       
         return possibleHorizon;
     }
 }
