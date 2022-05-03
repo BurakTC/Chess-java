@@ -32,6 +32,8 @@ public class Game implements Model {
         this.board = new Board();
         this.WHITE = new Player(Color.WHITE);
         this.BLACK = new Player(Color.BLACK);
+        this.whiteKing = new King(Color.WHITE);
+        this.blackKing = new King(Color.BLACK);
     }
 
     @Override
@@ -44,7 +46,6 @@ public class Game implements Model {
                 }
                 if (i == board.getInitialPawnRow(Color.WHITE)) {
                     board.setPiece(new Pawn(Color.WHITE), new Position(i, j));
-
                 }
             }
         }
@@ -55,7 +56,7 @@ public class Game implements Model {
         board.setPiece(new Bishop(Color.WHITE), new Position(0, 2));
         board.setPiece(new Bishop(Color.WHITE), new Position(0, 5));
         board.setPiece(new Queen(Color.WHITE), new Position(0, 3));
-        board.setPiece(new King(Color.WHITE), new Position(0, 4));
+        board.setPiece(whiteKing, new Position(0, 4));
 
         board.setPiece(new Rook(Color.BLACK), new Position(7, 0));
         board.setPiece(new Rook(Color.BLACK), new Position(7, 7));
@@ -64,7 +65,7 @@ public class Game implements Model {
         board.setPiece(new Bishop(Color.BLACK), new Position(7, 2));
         board.setPiece(new Bishop(Color.BLACK), new Position(7, 5));
         board.setPiece(new Queen(Color.BLACK), new Position(7, 3));
-        board.setPiece(new King(Color.BLACK), new Position(7, 4));
+        board.setPiece(blackKing, new Position(7, 4));
     }
 
     @Override

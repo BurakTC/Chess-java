@@ -17,7 +17,9 @@ import org.junit.jupiter.api.BeforeEach;
  * @author Burak
  */
 public class GameTest {
-   
+   //Je ne teste pas le king blanc ici car la methode ne prends pas necessairement de couleur
+   //en parametre donc fonctionne pour les DEUX COULEURS 
+    
     public GameTest() {
     }
     
@@ -67,5 +69,12 @@ public class GameTest {
         assertEquals(instance.getColumn(),expResult.getColumn());
     }
     
-    
+  public void BlackKing_null() {
+        Position nulle = null;        
+        
+        Position expResult = game.getPiecePosition(new King(Color.BLACK));
+        
+        //assertEquals(instance, expResult);
+        assertFalse(nulle.equals(expResult));
+    }   
 }

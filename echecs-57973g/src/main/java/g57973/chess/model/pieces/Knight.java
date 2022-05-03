@@ -51,12 +51,7 @@ public class Knight extends Piece {
         
         return possibleMoves;
         
-        /*for(Position pos : possiblePos){
-            if(board.contains(pos) && board.isFree(pos)||board.containsOppositeColor(pos, this.getColor())){
-                possibleMoves.add(pos);
-            }
-        }
-        return possibleMoves;*/
+        
     }
     @Override
     public String toString() {
