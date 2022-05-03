@@ -137,8 +137,8 @@ public class Board {
     public List<Position> getPositionOccupiedBy(Player player) {
         List<Position> posList = new ArrayList<>();
 
-        for (int i = 0; i < squares.length-1; i++) {
-            for (int j = 0; j < squares.length-1; j++) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
                 if (squares[i][j].getPiece() != null
                         && squares[i][j].getPiece().getColor() == player.getColor()) {
                     posList.add(new Position(i, j));
@@ -147,4 +147,5 @@ public class Board {
         }
         return posList;
     }
+
 }

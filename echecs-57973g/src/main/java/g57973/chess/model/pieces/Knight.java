@@ -45,9 +45,10 @@ public class Knight extends Piece {
         possiblePos.add(new Position(se.getRow(), se.getColumn() + 1));
         possiblePos.add(new Position(se.getRow()-1, se.getColumn()));
 
-        possiblePos.stream().filter(pos -> ((board.contains(pos) && board.isFree(pos))|| board.containsOppositeColor(pos, this.getColor()))).forEachOrdered(pos -> {
+        possiblePos.stream().filter(pos -> board.contains(pos) && (board.isFree(pos) || board.containsOppositeColor(pos, this.getColor()))).forEachOrdered(pos -> {
             possibleMoves.add(pos);
         });
+        
         return possibleMoves;
         
         /*for(Position pos : possiblePos){

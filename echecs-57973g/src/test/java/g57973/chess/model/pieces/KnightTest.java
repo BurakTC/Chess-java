@@ -22,9 +22,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author srexhep
  */
-public class KingTest {
+public class KnightTest {
 
-    public KingTest() {
+    public KnightTest() {
     }
 
     Board board;
@@ -35,80 +35,106 @@ public class KingTest {
     }
 
     @Test
-    public void testGetPossibleMovesKingLIBRE() {
+    public void testGetPossibleMoves_Knight_LIBRE() {
         Position position = new Position(3, 4);
-        Piece piece = new King(Color.WHITE);
+        Piece piece = new Knight(Color.WHITE);
         board.setPiece(piece, position);
 
         List<Position> expected = List.of(
-                new Position(2, 3),
-                new Position(2, 4),
-                new Position(2, 5),
-                new Position(3, 3),
-                new Position(4, 3),
-                new Position(4, 4),
-                new Position(4, 5),
-                new Position(3, 5)
+                new Position(5, 3),
+                new Position(4, 2),
+                
+                new Position(5,5),
+                new Position(4,6),
+                
+                new Position(2,2),
+                new Position(1,3),
+                
+                new Position(2,6),
+                new Position(1,5)
+        );
+        List<Position> positions = piece.getPossibleMoves(position, board);
+        assertEqualsIgnoringOrder(expected, positions);
+    }
+    
+    
+    @Test
+    public void testGetPossibleMoves_Knight_COIN() {
+        Position position = new Position(7, 7);
+        Piece piece = new Knight(Color.WHITE);
+        board.setPiece(piece, position);
+
+        List<Position> expected = List.of(
+                new Position(6, 5),
+                new Position(5,6)
         );
         List<Position> positions = piece.getPossibleMoves(position, board);
         assertEqualsIgnoringOrder(expected, positions);
     }
 
     @Test
-    public void testGetPossibleMovesKingCOIN() {
-        Position position = new Position(0, 0);
-        Piece piece = new King(Color.WHITE);
-        board.setPiece(piece, position);
-
-        List<Position> expected = List.of(
-                new Position(1, 1),
-                new Position(1, 0),
-                new Position(0, 1)
-        );
-        List<Position> positions = piece.getPossibleMoves(position, board);
-        assertEqualsIgnoringOrder(expected, positions);
-    }
-
-    @Test
-    public void testGetPossibleMovesKingPAWNENNEMI() {
+    public void testGetPossibleMoves_Knight_PAWN_ENNEMI() {
         Position position = new Position(3, 4);
-        Position posennemi = new Position(4, 4);
+        Position posennemi = new Position(5, 5);
+        Position posennemi2 = new Position(2, 6);
+        Position pos_inutile = new Position(2,3);
+        
         Piece ennemi = new Pawn(Color.BLACK);
-        Piece piece = new King(Color.WHITE);
+        Piece ennemi2 = new Pawn(Color.BLACK);
+        Piece inutile = new Pawn(Color.BLACK);
+        Piece piece = new Knight(Color.WHITE);
+        
         board.setPiece(piece, position);
         board.setPiece(ennemi, posennemi);
+        board.setPiece(ennemi2, posennemi2);
+        board.setPiece(inutile, pos_inutile);
+        
 
         List<Position> expected = List.of(
-                new Position(2, 3),
-                new Position(2, 4),
-                new Position(2, 5),
-                new Position(3, 3),
-                new Position(4, 3),
-                new Position(4, 4),
-                new Position(4, 5),
-                new Position(3, 5)
+               new Position(5, 3),
+                new Position(4, 2),
+                
+                new Position(5,5),
+                new Position(4,6),
+                
+                new Position(2,2),
+                new Position(1,3),
+                
+                new Position(2,6),
+                new Position(1,5)
         );
         List<Position> positions = piece.getPossibleMoves(position, board);
         assertEqualsIgnoringOrder(expected, positions);
     }
 
     @Test
-    public void testGetPossibleMovesKingPAWNAMI() {
-        Position position = new Position(3, 4);
-        Position posallié = new Position(4, 4);
-        Piece allié = new Pawn(Color.WHITE);
-        Piece piece = new King(Color.WHITE);
+    public void testGetPossibleMoves_Knight_PAWN_AMI() {
+       Position position = new Position(3, 4);
+        Position posami = new Position(5, 5);
+        Position posami2 = new Position(2, 6);
+        Position pos_inutile = new Position(2,3);
+        
+        Piece ami = new Pawn(Color.WHITE);
+        Piece ami2 = new Pawn(Color.WHITE);
+        Piece inutile = new Pawn(Color.WHITE);
+        Piece piece = new Knight(Color.WHITE);
+        
         board.setPiece(piece, position);
-        board.setPiece(allié, posallié);
+        board.setPiece(ami, posami);
+        board.setPiece(ami2, posami2);
+        board.setPiece(inutile, pos_inutile);
+        
 
         List<Position> expected = List.of(
-                new Position(2, 3),
-                new Position(2, 4),
-                new Position(2, 5),
-                new Position(3, 3),
-                new Position(4, 3),
-                new Position(4, 5),
-                new Position(3, 5)
+               new Position(5, 3),
+                new Position(4, 2),
+                
+                new Position(4,6),
+                
+                new Position(2,2),
+                new Position(1,3),
+                
+                new Position(1,5)
         );
         List<Position> positions = piece.getPossibleMoves(position, board);
         assertEqualsIgnoringOrder(expected, positions);
