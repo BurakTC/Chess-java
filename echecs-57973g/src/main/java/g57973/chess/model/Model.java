@@ -80,4 +80,13 @@ public interface Model  {
      */
     public List<Position> getPossibleMoves(Position position);
 
+    /**
+     * Get the current state of the game
+     * It can be PLAY, CHECK, CHECK_MATE or STALE_MATE
+     * 
+     * @return the current game state
+     */
+    public GameState getState();
+        
+    
 }

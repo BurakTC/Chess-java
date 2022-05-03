@@ -121,7 +121,6 @@ public abstract class Piece {
 
     protected List<Position> getPossibleHorizon(Position position, Board board) {
         List<Position> possibleHorizon = new ArrayList<>();
-
         
         Position n = position.next(Direction.N);
         Position w = position.next(Direction.W);

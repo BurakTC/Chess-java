@@ -25,8 +25,9 @@ public class Game implements Model {
     private final Player WHITE;
     private final Player BLACK;
     private Player currentPlayer;
-    private King whiteKing;
-    private King blackKing;
+    private final King whiteKing;
+    private final King blackKing;
+    private GameState state;
 
     public Game() {
         this.board = new Board();
@@ -38,6 +39,9 @@ public class Game implements Model {
 
     @Override
     public void start() {
+        this.state = GameState.PLAY;
+        
+        
         this.currentPlayer = WHITE;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -66,6 +70,10 @@ public class Game implements Model {
         board.setPiece(new Bishop(Color.BLACK), new Position(7, 5));
         board.setPiece(new Queen(Color.BLACK), new Position(7, 3));
         board.setPiece(blackKing, new Position(7, 4));
+    }
+
+    public GameState getState() {
+        return this.state;
     }
 
     @Override
@@ -115,7 +123,6 @@ public class Game implements Model {
         if (!isGameOver()) {
             this.currentPlayer = getOppositePlayer();
         }
-
     }
 
     @Override

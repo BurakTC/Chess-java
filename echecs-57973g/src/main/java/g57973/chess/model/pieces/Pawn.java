@@ -110,7 +110,7 @@ public class Pawn extends Piece {
         }
         return capturePositions;
     }
-
+    
     @Override
     public String toString() {
         if (this.color == Color.WHITE) {
