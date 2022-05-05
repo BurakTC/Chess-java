@@ -158,31 +158,28 @@ public class Game implements Model {
         }
         return posPiece;
     }
-    
-    private List<Position> getCapturePositions(Player player){
-        List<Position> capturePositions = new ArrayList<>();
-        
-        for(Position pos : board.getPositionOccupiedBy(player)){
-            Piece piece = board.getPiece(pos);
-            
-        }
-    }
 
+    private List<Position> getCapturePositions(Player player) {
+        List<Position> capturePositions = new ArrayList<>();
+
+        for (Position pos : board.getPositionOccupiedBy(player)) {
+            for (Position position : getPossibleMoves(pos)) {
+                capturePositions.add(position);
+            }
+        }
+        return capturePositions;
+    }
 
     @Override
     public boolean isValidMove(Position oldPos, Position newPos) {
-        boolean validMove = false;
-
-        if (!board.contains(oldPos) || board.isFree(oldPos)) {
-            for (Position pos : getPossibleMoves(oldPos)) {
-                if (pos == newPos) {
-                    validMove = true;
-                }
-            }
-        }
-        if(!validMove){
+        boolean validMove;
+        if (!board.contains(oldPos) || board.isFree(oldPos) ||!board.contains(newPos)|| !getPossibleMoves(oldPos).contains(newPos)) {
             throw new IllegalArgumentException("le deplacement n est pas valide");
         }
+        else{
+            validMove=true;
+        }
+
         return validMove;
     }
 
