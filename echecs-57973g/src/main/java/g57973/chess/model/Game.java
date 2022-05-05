@@ -12,6 +12,7 @@ import g57973.chess.model.pieces.Pawn;
 import g57973.chess.model.pieces.Piece;
 import g57973.chess.model.pieces.Queen;
 import g57973.chess.model.pieces.Rook;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,8 +41,7 @@ public class Game implements Model {
     @Override
     public void start() {
         this.state = GameState.PLAY;
-        
-        
+
         this.currentPlayer = WHITE;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -150,13 +150,40 @@ public class Game implements Model {
 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                Position pos = new Position(i,j);
-                if (!board.isFree(pos)&&board.getPiece(new Position(i, j)).equals(piece)) {
+                Position pos = new Position(i, j);
+                if (!board.isFree(pos) && board.getPiece(new Position(i, j)).equals(piece)) {
                     posPiece = new Position(i, j);
                 }
             }
         }
         return posPiece;
+    }
+    
+    private List<Position> getCapturePositions(Player player){
+        List<Position> capturePositions = new ArrayList<>();
+        
+        for(Position pos : board.getPositionOccupiedBy(player)){
+            Piece piece = board.getPiece(pos);
+            
+        }
+    }
+
+
+    @Override
+    public boolean isValidMove(Position oldPos, Position newPos) {
+        boolean validMove = false;
+
+        if (!board.contains(oldPos) || board.isFree(oldPos)) {
+            for (Position pos : getPossibleMoves(oldPos)) {
+                if (pos == newPos) {
+                    validMove = true;
+                }
+            }
+        }
+        if(!validMove){
+            throw new IllegalArgumentException("le deplacement n est pas valide");
+        }
+        return validMove;
     }
 
 }

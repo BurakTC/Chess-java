@@ -43,36 +43,7 @@ public abstract class Piece {
 
     public abstract List<Position> getPossibleMoves(Position position, Board board);
 
-    /**
-     * List<Position> possibleMoves = new ArrayList<>();
-     *
-     * Position pos1; Position pos2; if (!board.contains(position)) { throw new
-     * IllegalArgumentException("La position donnée n'est pas sur le plateau");
-     * } if (!board.isFree(position)) {
-     *
-     * //PION BLANC if (board.getPiece(position).color == Color.WHITE) { pos1 =
-     * position.next(Direction.N); pos2 = pos1.next(Direction.N);
-     *
-     * if (board.isFree(pos1)) { possibleMoves.add(pos1); } if
-     * ((position.getRow() == board.getInitialPawnRow(Color.WHITE)) &&
-     * (board.isFree(pos2))) { possibleMoves.add(pos2); } } //PION NOIR if
-     * (board.getPiece(position).color == Color.BLACK) { pos1 =
-     * position.next(Direction.S); pos2 = pos1.next(Direction.S);
-     *
-     * if (board.isFree(pos1)) { possibleMoves.add(pos1); } if
-     * ((position.getRow() == board.getInitialPawnRow(Color.BLACK)) &&
-     * (board.isFree(pos2))) { possibleMoves.add(pos2); }
-     *
-     * }
-     *
-     * }
-     *
-     * return possibleMoves;
-     *
-     * @param position
-     * @param board
-     * @return
-     */
+   
     public List<Position> getCapturePositions(Position position, Board board) {
         return getPossibleMoves(position, board);
     }
@@ -158,11 +129,6 @@ public abstract class Piece {
         if(board.contains(e)&&board.containsOppositeColor(e, this.color)){
             possibleHorizon.add(e);
         }
-        
-        
-        
-        
-        
        
         return possibleHorizon;
     }

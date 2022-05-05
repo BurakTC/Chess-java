@@ -88,5 +88,15 @@ public interface Model  {
      */
     public GameState getState();
         
+    /**
+     * Checks if a move is valid or not
+     * Checks if oldPos is free and if moving the piece from oldPos to newPos is not a possible move
+     * for the piece in question
+     * @param oldPos
+     * @param newPos
+     * @return true if the mov is possible, false otherwise
+     */
+    public boolean isValidMove(Position oldPos, Position newPos);
+
     
 }
