@@ -51,13 +51,12 @@ public class Board {
     public void setPiece(Piece piece, Position pos) {
         if (contains(pos)) {
             squares[pos.getRow()][pos.getColumn()].setPiece(piece);
-        } //else {
-            //throw new IllegalArgumentException("Le plateau ne contient pas la position donnée");
-       // }
+        } else {
+            throw new IllegalArgumentException("Le plateau ne contient pas la position donnée");
+        }
     }
-    //pour ajouter une piece dans une case precise 
-    //squares[5][6].setPiece(new Piece(Color.WHITE));
-
+    
+    
     /**
      *
      * @param pos

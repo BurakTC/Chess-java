@@ -70,7 +70,7 @@ public interface Model  {
      *
      * @return true if the game is over, false otherwise.
      */
-    public boolean isGameOver();
+//    public boolean isGameOver();
 
     /**
      * Get the possible moves for the piece located at the specified position.

@@ -12,7 +12,7 @@ package g57973.chess.model;
 public enum GameState {
     PLAY,
     CHECK,
-    CHECK_MATE,
-    STALE_MATE;
+    CHECK_MAT,
+    STALE_MAT;
     
 }

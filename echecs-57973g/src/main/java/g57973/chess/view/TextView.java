@@ -149,4 +149,18 @@ public class TextView implements View {
         System.out.println("Erreur : " + message);
     }
 
+    @Override
+    public void displayCheck() {
+        System.out.println("Attention, vous etes en échec, déplacez votre roi !");
+    }
+
+    @Override
+    public void displayMat(){
+        System.out.println("Echec et mat, le joueur courant gagne la partie");
+    }
+    
+    @Override
+    public void displayStaleMat(){
+        System.out.println("Plus de mouvements valides possibles, partie nulle !");
+    }
 }

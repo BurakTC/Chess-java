@@ -6,6 +6,7 @@
 package g57973.chess.controller;
 
 import g57973.chess.model.Game;
+import g57973.chess.model.GameState;
 import g57973.chess.model.Model;
 import g57973.chess.model.Position;
 import g57973.chess.view.TextView;
@@ -26,11 +27,9 @@ public class Controller {
     }
 
     public void play() {
-        boolean gameIsOver = false;
         view.displayTitle();
         model.start();
-
-        while (!gameIsOver) {
+        while (model.getState()== GameState.PLAY || model.getState()== GameState.PLAY) {
             view.displayBoard();
             view.displayPlayer();
 
@@ -38,10 +37,19 @@ public class Controller {
             Position oldPos = view.askPosition();
             System.out.println("Entrez la position de destination :");
             Position newPos = view.askPosition();
-
+            
+            if(model.isValidMove(oldPos,newPos)&& model.getPossibleMoves(oldPos).contains(newPos)){
             model.movePiecePosition(oldPos, newPos);
-
-
+            }
+            if(model.getState()== GameState.CHECK){
+                view.displayCheck();
+           }
+            if(model.getState()== GameState.STALE_MAT){
+                view.displayStaleMat();
+           }
+            if(model.getState()== GameState.CHECK_MAT){
+                view.displayMat();
+           }
         }
         view.displayWinner();
     }

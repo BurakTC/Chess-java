@@ -25,6 +25,11 @@ public interface View {
     
     public void displayError(String message);
         
+    public void displayCheck();
+    
+    public void displayMat();
+    
+    public void displayStaleMat();
     
     
 
