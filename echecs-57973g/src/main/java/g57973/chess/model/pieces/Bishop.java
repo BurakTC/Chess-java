@@ -37,7 +37,7 @@ public class Bishop extends Piece {
         if(this.color==Color.WHITE){
             return "  FB | ";
         }else{
-            return "  FN  |";
+            return "  FN | ";
         } 
     }
     

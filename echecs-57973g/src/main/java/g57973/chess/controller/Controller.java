@@ -45,7 +45,7 @@ public class Controller {
                     isValid = true;
 
                 } catch (Exception e) {
-                    System.out.println("Déplacement non valide, réessayez :");
+                    view.displayError(e.getMessage());
                 }
             } while (!isValid);
 

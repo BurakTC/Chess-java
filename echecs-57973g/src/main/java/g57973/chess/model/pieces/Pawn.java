@@ -63,6 +63,9 @@ public class Pawn extends Piece {
                 }
             }
         }
+        for(Position pos : getCapturePositions(position,board)){
+            possibleMoves.add(pos);
+        }
         return possibleMoves;
     }
 
