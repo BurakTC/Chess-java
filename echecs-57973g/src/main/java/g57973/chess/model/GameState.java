@@ -10,9 +10,24 @@ package g57973.chess.model;
  * @author Burak
  */
 public enum GameState {
+    /**
+     * Game initialized to PLAY, continue playing
+     */
     PLAY,
+    
+    /**
+     * The opposing player is in check but MAY make at least one valid move
+     */
     CHECK,
-    CHECK_MAT,
-    STALE_MAT;
+    
+    /**
+     * The opposing player is in check and cannot make any more legal moves, the current player wins
+     */
+    CHECK_MATE,
+    
+    /**
+     * No move possible for a player, draw game
+     */
+    STALE_MATE;
     
 }

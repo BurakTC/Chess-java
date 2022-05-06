@@ -72,7 +72,7 @@ public class TextView implements View {
 
     @Override
     public void displayPlayer() {
-        System.out.println("Au tour du joueur " + model.getCurrentPlayer().getColor());
+        System.out.println("Au tour du joueur " + model.getCurrentPlayer());
     }
 
     @Override

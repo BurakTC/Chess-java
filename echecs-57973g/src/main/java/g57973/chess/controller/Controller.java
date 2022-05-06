@@ -32,30 +32,36 @@ public class Controller {
         while (model.getState() == GameState.PLAY || model.getState() == GameState.CHECK) {
             view.displayBoard();
             view.displayPlayer();
-
-            boolean isValid = false;
+            Position oldPos = null;
+            Position newPos = null;
             do {
                 try {
                     System.out.println("Entrez une position de départ :");
-                    Position oldPos = view.askPosition();
+                    oldPos = view.askPosition();
                     System.out.println("Entrez la position de destination :");
-                    Position newPos = view.askPosition();
-
-                    model.movePiecePosition(oldPos, newPos);
-                    isValid = true;
-
+                    newPos = view.askPosition();
                 } catch (Exception e) {
                     view.displayError(e.getMessage());
                 }
-            } while (!isValid);
+            } while (!model.isValidMove(oldPos, newPos));
+
+            boolean ok = false;
+            do {
+                try {
+                    model.movePiecePosition(oldPos, newPos);
+                    ok = true;
+                } catch (Exception e) {
+                    view.displayError(e.getMessage());
+                }
+            } while (!ok);
 
             if (model.getState() == GameState.CHECK) {
                 view.displayCheck();
             }
-            if (model.getState() == GameState.STALE_MAT) {
+            if (model.getState() == GameState.STALE_MATE) {
                 view.displayStaleMat();
             }
-            if (model.getState() == GameState.CHECK_MAT) {
+            if (model.getState() == GameState.CHECK_MATE) {
                 view.displayMat();
             }
         }

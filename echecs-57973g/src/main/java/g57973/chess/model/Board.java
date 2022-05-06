@@ -146,5 +146,19 @@ public class Board {
         }
         return posList;
     }
+    
+    public Position getPiecePosition(Piece piece) {
+        Position posPiece = null;
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Position pos = new Position(i, j);
+                if (!isFree(pos) && getPiece(new Position(i, j)).equals(piece)) {
+                    return new Position(i, j);
+                }
+            }
+        }
+        return posPiece;
+    }
 
 }

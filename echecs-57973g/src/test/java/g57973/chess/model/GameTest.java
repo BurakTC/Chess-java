@@ -40,7 +40,7 @@ public class GameTest {
         
         game.board.setPiece(roi, instance);
         
-        Position expResult = game.getPiecePosition(roi);
+        Position expResult = board.getPiecePosition(roi);
         
         //assertEquals(instance, expResult);
         assertEquals(instance.getRow(),expResult.getRow());
@@ -62,19 +62,12 @@ public class GameTest {
         game.board.setPiece(inutile,pos1);
         game.board.setPiece(inutile2,pos2);
         
-        Position expResult = game.getPiecePosition(roi);
+        Position expResult = board.getPiecePosition(roi);
         
         //assertEquals(instance, expResult);
         assertEquals(instance.getRow(),expResult.getRow());
         assertEquals(instance.getColumn(),expResult.getColumn());
     }
     
-  public void BlackKing_null() {
-        Position nulle = null;        
-        
-        Position expResult = game.getPiecePosition(new King(Color.BLACK));
-        
-        //assertEquals(instance, expResult);
-        assertFalse(nulle.equals(expResult));
-    }   
+   
 }
