@@ -47,8 +47,8 @@ public class Game implements Model {
     @Override
     public void start() {
         this.state = GameState.PLAY;
-
         this.currentPlayer = WHITE;
+        
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (i == board.getInitialPawnRow(Color.BLACK)) {
@@ -96,7 +96,7 @@ public class Game implements Model {
     }
 
     /**
-     * 
+     *
      * @return the current player
      */
     @Override
@@ -105,7 +105,7 @@ public class Game implements Model {
     }
 
     /**
-     * 
+     *
      * @return the opposite player
      */
     @Override
@@ -115,61 +115,47 @@ public class Game implements Model {
 
     /**
      * Check if a position is occupied by the current player
+     *
      * @param pos
-     * @return 
+     * @return
      */
     @Override
     public boolean isCurrentPlayerPosition(Position pos) {
         return (!board.isFree(pos)) && (board.getPiece(pos).getColor() == currentPlayer.getColor());
     }
 
-    
     /**
-     * 
+     *
      * @param oldPos
-     * @param newPos 
+     * @param newPos
      */
     @Override
     public void movePiecePosition(Position oldPos, Position newPos) {
-        Piece cettePiece = board.getPiece(oldPos);
-        Piece king;
-        Piece oppositeKing;
-        List<Position> myCaptures =new  ArrayList<>();
-        if (currentPlayer.getColor() == Color.WHITE) {
-            king = whiteKing;
-            oppositeKing = blackKing;
-        } else {
-            king = blackKing;
-            oppositeKing = whiteKing;
-        }
-        myCaptures = (king.getCapturePositions(board.getPiecePosition(king), board));
+//        Piece king;
+//        Piece oppositeKing;
+//        List<Position> myCaptures =new  ArrayList<>();
+//        if (currentPlayer.getColor() == Color.WHITE) {
+//            king = whiteKing;
+//            oppositeKing = blackKing;
+//        } else {
+//            king = blackKing;
+//            oppositeKing = whiteKing;
+//        }
+//        myCaptures = (king.getCapturePositions(board.getPiecePosition(king), board));
 
-        if ((!board.contains(oldPos)) || (!board.contains(newPos))) {
-            throw new IllegalArgumentException("Une des positions données n'est pas dans le plateau");
-        }
-        if ((board.isFree(oldPos))) {
-            throw new IllegalArgumentException("Pas de pion à déplacer");
-        }
-        
-        if (!(getPossibleMoves(oldPos).contains(newPos))) {
-            throw new IllegalArgumentException("Vous ne pouvez pas vous déplacer à cette position !");
-        }
-        
-        if (!(cettePiece.getColor() == currentPlayer.getColor())) {
-            throw new IllegalArgumentException("Ce n'est pas votre pion !");
-        }
-        else if (isValidMove(oldPos, newPos)) {
-            board.setPiece(cettePiece, newPos);
+        if (isValidMove(oldPos, newPos)) {
+            board.setPiece(board.getPiece(oldPos), newPos);
             board.dropPiece(oldPos);
         }
 
-        if (king_in_check(oldPos,newPos)) {
+        if (king_in_check(oldPos, newPos)) {
             if (noValidMoves(getOppositePlayer())) {
                 state = GameState.CHECK_MATE;
             } else {
                 state = GameState.CHECK;
             }
         }
+
         if (noValidMoves(getOppositePlayer())) {
             state = GameState.STALE_MATE;
         } else {
@@ -177,12 +163,13 @@ public class Game implements Model {
         }
         this.currentPlayer = getOppositePlayer();
     }
-    
-/**
- * Checks if a player can still make a VALID move
- * @param player
- * @return false if he can , true otherwise
- */
+
+    /**
+     * Checks if a player can still make a VALID move
+     *
+     * @param player
+     * @return false if he can , true otherwise
+     */
     private boolean noValidMoves(Player player) {
 
         for (Position pos : board.getPositionOccupiedBy(player)) {
@@ -194,6 +181,7 @@ public class Game implements Model {
         }
         return true;
     }
+    
 //    @Override
 //    public boolean isGameOver() {
 //        /**
@@ -216,6 +204,7 @@ public class Game implements Model {
 
     /**
      * Create a list of all moves where the piece can capture another
+     *
      * @param player
      * @return List with all these positions
      */
@@ -231,55 +220,68 @@ public class Game implements Model {
     }
 
     /**
-     * Checks if a move would put the current king in check and
-     * other conditions that verify the validity of a move
+     * Checks if a move would put the current king in check and other conditions
+     * that verify the validity of a move
+     *
      * @param oldPos
      * @param newPos
      * @return true if the move is valid, false otherwise
      */
     @Override
     public boolean isValidMove(Position oldPos, Position newPos) {
-        boolean validMove;
-        
+        boolean validMove = false;
+
+        Piece king;
+        Piece oppositeKing;
+        List<Position> myCaptures = new ArrayList<>();
+
+        if (currentPlayer.getColor() == Color.WHITE) {
+            king = whiteKing;
+            oppositeKing = blackKing;
+        } else {
+            king = blackKing;
+            oppositeKing = whiteKing;
+        }
+        myCaptures = (king.getCapturePositions(board.getPiecePosition(king), board));
 
         if (!board.contains(oldPos)) {
             throw new IllegalArgumentException("ancienne position non contenue");
-        }
-        if (board.isFree(oldPos)) {
+        } else if (board.isFree(oldPos)) {
             throw new IllegalArgumentException("ancienne position vide");
-        }
-        if (!board.contains(newPos)) {
+        } else if (!board.contains(newPos)) {
             throw new IllegalArgumentException("nouvelle position non contenue");
-        }
-
-        if (!getPossibleMoves(oldPos).contains(newPos)) {
+        } else if (!getPossibleMoves(oldPos).contains(newPos)) {
             throw new IllegalArgumentException("nouvelle position pas possible pour l'ancienne position");
-        }
-        
-        if(king_in_check(oldPos,newPos)){
-            throw new IllegalArgumentException("Vous mettrez votre roi en échec, réessayez :");
-        }
-        
-        else {
-            validMove = true;
+        } else {
+            Piece cettePiece = board.getPiece(oldPos);
+            if (cettePiece.getColor() != currentPlayer.getColor()) {
+                throw new IllegalArgumentException("Ce n'est pas votre pion !");
+            }
+
+            if (king_in_check(oldPos, newPos)) {
+                throw new IllegalArgumentException("Vous mettrez votre roi en échec, réessayez :");
+            } else {
+                validMove = true;
+            }
         }
         return validMove;
     }
-    
+
     /**
      * Checks if a move would put the current king in check
+     *
      * @param oldPos
      * @param newPos
      * @return true if my king would be in check, false otherwise
      */
-    private boolean king_in_check(Position oldPos,Position newPos){
-        boolean invalidMove = false; 
+    private boolean king_in_check(Position oldPos, Position newPos) {
+        boolean invalidMove = false;
         Piece recupold = this.getPiece(oldPos);
         Piece recupnew = this.getPiece(newPos);
 
         board.setPiece(recupold, newPos);
         board.dropPiece(oldPos);
-        
+
         Piece king;
         if (currentPlayer.getColor() == Color.WHITE) {
             king = whiteKing;
@@ -287,15 +289,14 @@ public class Game implements Model {
             king = blackKing;
         }
 
-        if(getCapturePositions(getOppositePlayer()).contains(board.getPiecePosition(king))){
+        if (getCapturePositions(getOppositePlayer()).contains(board.getPiecePosition(king))) {
             invalidMove = true;
         }
-        
-        board.setPiece(recupold,oldPos);
-        board.setPiece(recupnew,newPos);
 
-        
+        board.setPiece(recupold, oldPos);
+        board.setPiece(recupnew, newPos);
+
         return invalidMove;
     }
-    
+
 }

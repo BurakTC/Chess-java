@@ -34,27 +34,24 @@ public class Controller {
             view.displayPlayer();
             Position oldPos = null;
             Position newPos = null;
+            
+            boolean validmove = false;
             do {
-                try {
+                //try {
                     System.out.println("Entrez une position de départ :");
                     oldPos = view.askPosition();
                     System.out.println("Entrez la position de destination :");
                     newPos = view.askPosition();
-                } catch (Exception e) {
-                    view.displayError(e.getMessage());
-                }
-            } while (!model.isValidMove(oldPos, newPos));
+                    if(model.isValidMove(oldPos, newPos)){
+                        validmove=true;
+                    }
+             //   } //catch (Exception e) {
+                   // view.displayError(e.getMessage());
+                //}
+            } while (validmove = false);
 
-            boolean ok = false;
-            do {
-                try {
-                    model.movePiecePosition(oldPos, newPos);
-                    ok = true;
-                } catch (Exception e) {
-                    view.displayError(e.getMessage());
-                }
-            } while (!ok);
-
+            model.movePiecePosition(oldPos, newPos);
+            
             if (model.getState() == GameState.CHECK) {
                 view.displayCheck();
             }
