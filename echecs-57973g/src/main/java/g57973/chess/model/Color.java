@@ -21,9 +21,7 @@ public enum Color {
  * @return the opposite color to the current color
  */
     public Color opposite() {
-
         return this == Color.BLACK ? Color.WHITE : Color.BLACK;
-
     }
 
 }

@@ -94,7 +94,7 @@ public class Game implements Model {
 
     @Override
     public Player getOppositePlayer() {
-        return currentPlayer == WHITE ? currentPlayer = BLACK : WHITE;
+        return currentPlayer == WHITE ? BLACK : WHITE;
     }
 
     @Override
@@ -105,7 +105,8 @@ public class Game implements Model {
     @Override
     public void movePiecePosition(Position oldPos, Position newPos) {
         Piece cettePiece = board.getPiece(oldPos);
-
+        
+        
         if ((!board.contains(oldPos)) || (!board.contains(newPos))) {
             throw new IllegalArgumentException("Une des positions données n'est pas dans le plateau");
         }
@@ -115,21 +116,21 @@ public class Game implements Model {
         if (!board.getPiece(oldPos).getPossibleMoves(oldPos, board).contains(newPos)) {
             throw new IllegalArgumentException("Vous ne pouvez pas vous déplacer à cette position !");
         }
-        
+
         if (!(cettePiece.getColor() == currentPlayer.getColor())) {
             throw new IllegalArgumentException("Ce n'est pas votre pion !");
-        }
-        
-        else{
+
+        } else if (isValidMove(oldPos, newPos) && getPossibleMoves(oldPos).contains(newPos)) {
+            if(!board.isFree(newPos)&&board.containsOppositeColor(newPos, currentPlayer.getColor())){
+                board.dropPiece(newPos);
+            }
             board.setPiece(cettePiece, newPos);
             board.dropPiece(oldPos);
+
         }
 
         updateState();
-
-        if (getState() == GameState.PLAY || getState() == GameState.CHECK) {
-           currentPlayer = getOppositePlayer();
-        }
+        this.currentPlayer = getOppositePlayer();
 
     }
 
@@ -145,6 +146,7 @@ public class Game implements Model {
             king = blackKing;
             oppositeKing = whiteKing;
         }
+
         myCaptures = (king.getCapturePositions(getPiecePosition(king), board));
 
         if (myCaptures.contains(getPiecePosition(oppositeKing))) {
@@ -161,15 +163,15 @@ public class Game implements Model {
     }
 
     private boolean noValidMoves(Player player) {
-        boolean validMove = false;
+
         for (Position pos : board.getPositionOccupiedBy(player)) {
             for (Position move : getPossibleMoves(pos)) {
                 if (isValidMove(pos, move)) {
-                    validMove = true;
+                    return false;
                 }
             }
         }
-        return validMove;
+        return true;
     }
 //    @Override
 //    public boolean isGameOver() {
@@ -190,7 +192,7 @@ public class Game implements Model {
     public List<Position> getPossibleMoves(Position position) {
         return board.getPiece(position).getPossibleMoves(position, board);
     }
-
+    
     public Position getPiecePosition(Piece piece) {
         Position posPiece = null;
 
@@ -208,28 +210,35 @@ public class Game implements Model {
     private List<Position> getCapturePositions(Player player) {
         List<Position> capturePositions = new ArrayList<>();
 
-        for (Position pos : board.getPositionOccupiedBy(player)) {
-            for (Position position : getPossibleMoves(pos)) {
+        board.getPositionOccupiedBy(player).forEach(pos -> {
+            getPossibleMoves(pos).forEach(position -> {
                 capturePositions.add(position);
-            }
-        }
+            });
+        });
         return capturePositions;
     }
 
     @Override
     public boolean isValidMove(Position oldPos, Position newPos) {
         boolean validMove;
-
-        if (!board.contains(oldPos) || board.isFree(oldPos) || 
-                !board.contains(newPos) || !getPossibleMoves(oldPos).contains(newPos)||
-                getCapturePositions(getOppositePlayer()).contains(newPos) ) {
-            
-            throw new IllegalArgumentException("le deplacement n est pas valide");
+        
+        if (!board.contains(oldPos)) {
+            throw new IllegalArgumentException("ancienne position non contenue");
+        }
+        if (board.isFree(oldPos)) {
+            throw new IllegalArgumentException("ancienne position vide");
+        }
+        if (!board.contains(newPos)) {
+            throw new IllegalArgumentException("nouvelle position non contenue");
+        }
+       // if (getCapturePositions(getOppositePlayer()).contains(newPos)) {                          //ici err
+       //throw new IllegalArgumentException("Vous allez vous y faire capturer !");
+        //} 
+        if (!getPossibleMoves(oldPos).contains(newPos)) {
+            throw new IllegalArgumentException("nouvelle position pas possible pour l'ancienne position");
         } else {
             validMove = true;
         }
-
         return validMove;
     }
-
 }

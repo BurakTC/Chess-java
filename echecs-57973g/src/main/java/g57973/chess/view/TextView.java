@@ -6,7 +6,9 @@
 package g57973.chess.view;
 
 import g57973.chess.model.Color;
+import static g57973.chess.model.Color.WHITE;
 import g57973.chess.model.Model;
+import g57973.chess.model.Player;
 import g57973.chess.model.pieces.Piece;
 import g57973.chess.model.Position;
 import java.util.Scanner;
@@ -30,7 +32,7 @@ public class TextView implements View {
 
     @Override
     public void displayWinner() {
-        System.out.println("Vous êtes le gagnant :" + model.getCurrentPlayer());
+        System.out.println("Vous êtes le gagnant :" + model.getCurrentPlayer().getColor());
     }
 
     @Override

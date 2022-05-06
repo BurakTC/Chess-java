@@ -29,27 +29,35 @@ public class Controller {
     public void play() {
         view.displayTitle();
         model.start();
-        while (model.getState()== GameState.PLAY || model.getState()== GameState.PLAY) {
+        while (model.getState() == GameState.PLAY || model.getState() == GameState.CHECK) {
             view.displayBoard();
             view.displayPlayer();
 
-            System.out.println("Entrez une position de départ :");
-            Position oldPos = view.askPosition();
-            System.out.println("Entrez la position de destination :");
-            Position newPos = view.askPosition();
-            
-            if(model.isValidMove(oldPos,newPos)&& model.getPossibleMoves(oldPos).contains(newPos)){
-            model.movePiecePosition(oldPos, newPos);
-            }
-            if(model.getState()== GameState.CHECK){
+            boolean isValid = false;
+            do {
+                try {
+                    System.out.println("Entrez une position de départ :");
+                    Position oldPos = view.askPosition();
+                    System.out.println("Entrez la position de destination :");
+                    Position newPos = view.askPosition();
+
+                    model.movePiecePosition(oldPos, newPos);
+                    isValid = true;
+
+                } catch (Exception e) {
+                    System.out.println("Déplacement non valide, réessayez :");
+                }
+            } while (!isValid);
+
+            if (model.getState() == GameState.CHECK) {
                 view.displayCheck();
-           }
-            if(model.getState()== GameState.STALE_MAT){
+            }
+            if (model.getState() == GameState.STALE_MAT) {
                 view.displayStaleMat();
-           }
-            if(model.getState()== GameState.CHECK_MAT){
+            }
+            if (model.getState() == GameState.CHECK_MAT) {
                 view.displayMat();
-           }
+            }
         }
         view.displayWinner();
     }
