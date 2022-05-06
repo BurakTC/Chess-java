@@ -94,7 +94,7 @@ public interface Model  {
      * for the piece in question
      * @param oldPos
      * @param newPos
-     * @return true if the mov is possible, false otherwise
+     * @return true if the move is possible, false otherwise
      */
     public boolean isValidMove(Position oldPos, Position newPos);
 

@@ -147,6 +147,11 @@ public class Board {
         return posList;
     }
     
+    /**
+     * Get the position of the given piece
+     * @param piece
+     * @return  this position 
+     */
     public Position getPiecePosition(Piece piece) {
         Position posPiece = null;
 

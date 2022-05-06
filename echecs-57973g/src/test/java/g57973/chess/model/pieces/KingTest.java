@@ -35,7 +35,7 @@ public class KingTest {
     }
 
     @Test
-    public void testGetPossibleMovesKingLIBRE() {
+    public void testGetPossibleMoves_King_LIBRE() {
         Position position = new Position(3, 4);
         Piece piece = new King(Color.WHITE);
         board.setPiece(piece, position);
@@ -55,7 +55,7 @@ public class KingTest {
     }
 
     @Test
-    public void testGetPossibleMovesKingCOIN() {
+    public void testGetPossibleMoves_King_COIN() {
         Position position = new Position(0, 0);
         Piece piece = new King(Color.WHITE);
         board.setPiece(piece, position);
@@ -70,7 +70,7 @@ public class KingTest {
     }
 
     @Test
-    public void testGetPossibleMovesKingPAWNENNEMI() {
+    public void testGetPossibleMovesKing_PAWN_ENNEMI() {
         Position position = new Position(3, 4);
         Position posennemi = new Position(4, 4);
         Piece ennemi = new Pawn(Color.BLACK);
@@ -93,7 +93,7 @@ public class KingTest {
     }
 
     @Test
-    public void testGetPossibleMovesKingPAWNAMI() {
+    public void testGetPossibleMovesKing_PAWN_AMI() {
         Position position = new Position(3, 4);
         Position posallié = new Position(4, 4);
         Piece allié = new Pawn(Color.WHITE);

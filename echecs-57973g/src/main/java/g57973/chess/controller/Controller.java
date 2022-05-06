@@ -26,31 +26,33 @@ public class Controller {
         this.view = view;
     }
 
+
+    /**
+     * 
+     */
     public void play() {
         view.displayTitle();
         model.start();
-        while (model.getState() == GameState.PLAY || model.getState() == GameState.CHECK) {
+         while (model.getState() == GameState.PLAY || model.getState() == GameState.CHECK) {
             view.displayBoard();
             view.displayPlayer();
-            Position oldPos = null;
-            Position newPos = null;
-            
-            boolean validmove = false;
-            do {
-                //try {
-                    System.out.println("Entrez une position de départ :");
-                    oldPos = view.askPosition();
-                    System.out.println("Entrez la position de destination :");
-                    newPos = view.askPosition();
-                    if(model.isValidMove(oldPos, newPos)){
-                        validmove=true;
-                    }
-             //   } //catch (Exception e) {
-                   // view.displayError(e.getMessage());
-                //}
-            } while (validmove = false);
 
-            model.movePiecePosition(oldPos, newPos);
+            boolean isValid = false;
+            do {
+                try {
+                    System.out.println("Entrez une position de départ :");
+                    Position oldPos = view.askPosition();
+                    System.out.println("Entrez la position de destination :");
+                    Position newPos = view.askPosition();
+
+                    model.movePiecePosition(oldPos, newPos);
+                    isValid = true;
+
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            } while (!isValid);
+
             
             if (model.getState() == GameState.CHECK) {
                 view.displayCheck();
