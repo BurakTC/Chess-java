@@ -1,6 +1,6 @@
 # Chess Game in Java
 
-![Chess Game Preview](img\chess.png)
+![Chess Game Preview](img/chess.png)
 
 ## Description
 This project is a chess game developed in Java for a high school project. The game is designed to be played on a terminal, providing a simple yet enjoyable experience for chess enthusiasts.
